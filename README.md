@@ -2,7 +2,7 @@
 
 **Observed (source):** A full-stack music streaming application with listener registration/session login, catalog search, authenticated Range audio, likes, private ordered playlists, listening history, recommendations, and an administrator upload/metadata panel. Java 21 + Spring Boot 3.5.0, MySQL/Flyway, React/Vite, Python FastAPI.
 
-**Observed:** Existing partial `backend/` and `frontend/` changes were retained and completed. The requested guides were read in order. `starter/` was absent here; the original starter was found and inspected at `E:/projectexcelr!/starter`. Its session/CSRF, validated upload, bounded Range stream, RestClient timeout and native-audio patterns were adapted. The previous README is preserved in [docs/REA_GUIDE_INDEX.md](docs/REA_GUIDE_INDEX.md). The supplied REA evidence ledger describes other projects and is not Raagify verification.
+**Observed:** Existing partial `backend/` and `frontend/` changes were retained and completed. Reference session/CSRF, validated upload, bounded Range streaming, RestClient timeout and native-audio patterns were adapted to the music domain. Historical REA guides and the old reference changelog are kept locally and excluded from Git. Raagify's own run steps and verification evidence are included here.
 
 **Observed:** Actual executed checks and failures are recorded in [verification/REPORT.md](verification/REPORT.md), [verification/commands.jsonl](verification/commands.jsonl), and `verification/logs/`. A frontend build and isolated client tests are not end-to-end evidence. See the report for real MySQL, HTTP, ML failure and browser results.
 

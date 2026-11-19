@@ -8,6 +8,9 @@
 **/.pytest_cache/
 **/.venv/
 .cache/
+/CHANGELOG.md
+/REA_*.md
+/docs/REA_GUIDE_INDEX.md
 tools/apache-maven-*/
 data/
 verification/runtime/

@@ -27,8 +27,6 @@ files = {
     "tools/maven.py",
     "tools/publish.py",
 }
-files.update(p.name for p in ROOT.glob("REA_*.md"))
-files.add("CHANGELOG.md")
 selected = [ROOT / x for x in files]
 for folder in folders:
     for p in (ROOT / folder).rglob("*"):
@@ -36,6 +34,8 @@ for folder in folders:
             part in skip for part in p.relative_to(ROOT / folder).parts
         ):
             if folder == "ml-service" and "models" in p.parts and p.name != ".gitkeep":
+                continue
+            if folder == "docs" and p.name == "REA_GUIDE_INDEX.md":
                 continue
             selected.append(p)
 for source in selected:
