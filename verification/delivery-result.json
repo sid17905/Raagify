@@ -1,9 +1,9 @@
 {
   "classification": "Observed",
-  "commit": "4d6decfeb71512c862f778efcb88e2c4928a1502",
+  "commit": "3031da6e66eedb9fa0d484e6b5ee28520f126fb3",
   "remote": "https://github.com/sid17905/Raagify.git",
   "remotePublished": true,
-  "scope": "Final media-only code and analytics; supersedes the original failed-push receipt",
+  "scope": "Verified media processing, analytics, README screenshots, clickable covers and now-playing panel",
   "testsPassed": {
     "backend": 10,
     "frontend": 13,
@@ -19,12 +19,18 @@
   "composeRuntime": "Unverified: engine pipe unavailable; configuration validation passed",
   "screenshotFiles": [
     "pics/admin_analytics1.png",
-    "pics/admin_analytics2.png"
+    "pics/admin_analytics2.png",
+    "pics/homepage.png",
+    "pics/likedsongs.png",
+    "pics/nowplayingpanel.png",
+    "pics/playlist.png",
+    "pics/songdetails.png"
   ],
   "latestWork": {
     "classification": "Observed",
     "scope": "Clickable song covers, player artwork, right panel and session/favicon fixes",
     "verification": "10 backend tests, 13 frontend tests, 16 live Edge checks and frontend build passed",
-    "publication": "Unverified: latest changes require GitHub credentials; preceding published commit remains recorded above"
-  }
+    "publication": "Observed: published and verified on GitHub at 3031da6e66eedb9fa0d484e6b5ee28520f126fb3"
+  },
+  "verifiedAt": "2026-11-19T09:16:23.259862+00:00"
 }
