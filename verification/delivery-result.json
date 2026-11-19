@@ -1,0 +1,11 @@
+{
+  "classification": "Observed",
+  "localCommit": "Created in .cache/publish; main branch",
+  "pushAttempt": "Failed with exit 128",
+  "pushReason": "Windows wincredman could not persist credentials; no GitHub username available non-interactively. GitHub CLI reported invalid stored authentication.",
+  "remote": "https://github.com/sid17905/Raagify.git",
+  "remotePublished": false,
+  "composeRuntime": "Unverified: Docker engine pipe unavailable",
+  "genrePrediction": "Observed: explicit PLACEHOLDER; no trained model supplied",
+  "testsPassed": {"backend": 9, "frontend": 5, "python": 4, "liveHttp": 59, "browser": 19}
+}

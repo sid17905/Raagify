@@ -118,3 +118,16 @@ python verification/runtime.py stop
 ```
 
 **Unverified:** Other audio codecs, physical speaker output, trained genre accuracy and production deployment are not established by the tested WAV/Edge scenario.
+
+## GitHub delivery
+
+**Observed:** Source and evidence were committed in the isolated `.cache/publish` checkout because root `.git` writes are restricted in this environment. The GitHub repository was empty when inspected. A push to `https://github.com/sid17905/Raagify.git` was attempted and failed: Windows Credential Manager could not persist credentials and Git could not obtain a username non-interactively. GitHub CLI also reported invalid stored authentication. See `verification/logs/git-push.log`.
+
+**Recommendation:** Reauthenticate from your normal terminal, then push the completed local checkout:
+
+```powershell
+gh auth login --hostname github.com
+git -c http.sslBackend=openssl -C .cache/publish push -u origin main
+```
+
+**Observed:** `Raagify.bundle`, when present in the delivery workspace, is an export of the local Git history. It excludes private runtime credentials and data and can be cloned into another directory if the isolated checkout is unavailable.

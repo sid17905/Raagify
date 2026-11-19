@@ -15,4 +15,5 @@ verification/*.png
 ml-service/models/*
 !ml-service/models/.gitkeep
 *.log
+*.bundle
 !verification/logs/*.log
