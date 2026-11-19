@@ -16,14 +16,16 @@ FEATURE_NAMES = (
 )
 
 
-def extract(data: bytes) -> tuple[list[float], list[float], float]:
+def decode_audio(data: bytes, sample_rate=SAMPLE_RATE, seconds=60):
     # Decode at most 60 seconds, with a bounded read even for a malicious header.
     with sf.SoundFile(io.BytesIO(data)) as source:
         if source.samplerate <= 0 or source.samplerate > 192000 or source.channels > 8:
             raise ValueError("Unsupported sample rate or channel count")
         duration = source.frames / source.samplerate
         audio = source.read(
-            min(source.frames, source.samplerate * 60), dtype="float32", always_2d=True
+            min(source.frames, source.samplerate * seconds),
+            dtype="float32",
+            always_2d=True,
         ).mean(axis=1)
         source_rate = source.samplerate
     if (
@@ -33,8 +35,13 @@ def extract(data: bytes) -> tuple[list[float], list[float], float]:
         or not np.isfinite(audio).all()
     ):
         raise ValueError("Audio must have a valid duration and finite samples")
-    factor = gcd(source_rate, SAMPLE_RATE)
-    audio = resample_poly(audio, SAMPLE_RATE // factor, source_rate // factor)
+    factor = gcd(source_rate, sample_rate)
+    audio = resample_poly(audio, sample_rate // factor, source_rate // factor)
+    return audio, duration
+
+
+def extract(data: bytes) -> tuple[list[float], list[float], float]:
+    audio, duration = decode_audio(data)
     n_fft, hop = 2048, 512
     if audio.size < n_fft:
         audio = np.pad(audio, (0, n_fft - audio.size))

@@ -154,7 +154,7 @@ def main():
             song["featureStatus"] == "READY" for song in catalog
         )
         checked(
-            "three persisted DTOs with edited metadata, cover and actual ML features"
+            "three persisted DTOs with edited metadata, cover and actual DSP features"
         )
         stream = page.request.get(
             f"http://127.0.0.1:15173/api/songs/{song['id']}/stream",

@@ -1,4 +1,4 @@
-"""Real HTTP checks, actual ML, downtime/timeout, and process/database restarts."""
+"""Real HTTP checks, actual media processor, downtime/timeout, and process/database restarts."""
 
 import base64
 import io
@@ -18,7 +18,7 @@ from runtime import (
     LOGS,
     credentials,
     start_backend,
-    start_ml,
+    start_media,
     stop,
     mysql,
     record,
@@ -157,8 +157,8 @@ def main():
         check("actual Python extraction stored READY", data["featureStatus"] == "READY")
         if not genre:
             check(
-                "genre prediction clearly placeholder",
-                data["genreSource"] == "PLACEHOLDER"
+                "missing embedded genre remains explicitly unclassified",
+                data["genreSource"] == "UNCLASSIFIED"
                 and data["genre"] == "Unclassified",
             )
         check(
@@ -292,10 +292,10 @@ def main():
         ).status_code
         == 416,
     )
-    stop("ml")
+    stop("media")
     r = admin.upload("Pending jazz", "Jazz")
     check(
-        "ML service down upload succeeds pending",
+        "media processor service down upload succeeds pending",
         r.status_code == 201 and r.json()["featureStatus"] == "PENDING",
     )
     pending = r.json()["id"]
@@ -325,7 +325,7 @@ def main():
         r = admin.upload("Timed out", "Jazz")
         elapsed = time.monotonic() - begin
         check(
-            "ML read timeout upload succeeds pending",
+            "media processor read timeout upload succeeds pending",
             r.status_code == 201
             and r.json()["featureStatus"] == "PENDING"
             and elapsed < 8,
@@ -334,7 +334,7 @@ def main():
     finally:
         slow.shutdown()
         slow.server_close()
-    start_ml()
+    start_media()
     r = admin.write("POST", f"/admin/songs/{pending}/features/retry")
     check(
         "pending features retry preserves admin genre",
@@ -368,7 +368,11 @@ def main():
         )
         migrations = cursor.fetchall()
     connection.close()
-    check("real MySQL Flyway V1", ("1", 1) in migrations, str(migrations))
+    check(
+        "real MySQL Flyway V1/V2/V3",
+        all((str(version), 1) in migrations for version in (1, 2, 3)),
+        str(migrations),
+    )
     a.write("DELETE", f"/playlists/{p}")
     check("playlist delete", a.get(f"/playlists/{p}").status_code == 404)
     a.write("DELETE", f"/likes/{first}")

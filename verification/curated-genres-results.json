@@ -1,0 +1,307 @@
+{
+  "classification": "Observed",
+  "source": "User-supplied curated genres; not inferred by the model",
+  "applied": [
+    {
+      "id": 91,
+      "title": "Lose My Mind feat. Doja Cat From F1 The Movie",
+      "genre": "Pop Rap / Electropop / Synthpop / Dance-Pop"
+    },
+    {
+      "id": 90,
+      "title": "Dard - E - Disco",
+      "genre": "Bollywood Disco / Dance-Pop / Filmi"
+    },
+    {
+      "id": 89,
+      "title": "Actor",
+      "genre": "Indie Pop / Pop Rock / Bedroom Pop"
+    },
+    {
+      "id": 88,
+      "title": "Yeh Fitoor Mera",
+      "genre": "Bollywood Romantic Ballad / Filmi / Sufi Pop"
+    },
+    {
+      "id": 87,
+      "title": "No. 1 Party Anthem",
+      "genre": "Indie Rock / Alternative Rock / Lounge Pop"
+    },
+    {
+      "id": 86,
+      "title": "Mausam",
+      "genre": "Bollywood Pop / Filmi / Soft Rock"
+    },
+    {
+      "id": 85,
+      "title": "Lover Girl",
+      "genre": "Indie Pop / Bedroom Pop / Jazz Pop"
+    },
+    {
+      "id": 84,
+      "title": "Labb Par Aaye",
+      "genre": "Hindustani Classical Fusion / Ghazal / Filmi"
+    },
+    {
+      "id": 83,
+      "title": "Do Me a Favour",
+      "genre": "Indie Rock / Post-Punk Revival / Alternative Rock"
+    },
+    {
+      "id": 82,
+      "title": "Dracula",
+      "genre": "Psychedelic Pop / Psychedelic Rock / Synthpop"
+    },
+    {
+      "id": 81,
+      "title": "Behe Chala",
+      "genre": "Bollywood Pop / Ambient Pop / Filmi"
+    },
+    {
+      "id": 80,
+      "title": "Aakhri Ishq",
+      "genre": "Bollywood Romantic Ballad / Indipop / Filmi"
+    },
+    {
+      "id": 79,
+      "title": "Khat",
+      "genre": "Indie Pop / Acoustic Pop / Singer-Songwriter"
+    },
+    {
+      "id": 78,
+      "title": "Destiny - Mann Atkeya",
+      "genre": "Desi Hip-Hop / Pop Rap / Sufi Fusion"
+    },
+    {
+      "id": 77,
+      "title": "Ishq Jalakar - Karvaan",
+      "genre": "Sufi Rock / Qawwali Fusion / Filmi"
+    },
+    {
+      "id": 76,
+      "title": "Dhurandhar The Revenge - Aari Aari",
+      "genre": "Punjabi Pop / Bhangra Hip-Hop / Dance-Pop"
+    },
+    {
+      "id": 75,
+      "title": "Main Aur Tu",
+      "genre": "Punjabi Pop / Desi Hip-Hop / Urban Punjabi"
+    },
+    {
+      "id": 74,
+      "title": "Wild Ride",
+      "genre": "Desi Hip-Hop / Trap / Punjabi Rap"
+    },
+    {
+      "id": 73,
+      "title": "Banda Kaam Ka",
+      "genre": "Experimental Hip-Hop / Alternative R&B / Indipop"
+    },
+    {
+      "id": 72,
+      "title": "A Certain Romance",
+      "genre": "Indie Rock / Garage Rock Revival / Post-Punk Revival"
+    },
+    {
+      "id": 71,
+      "title": "Move - Yeh Ishq Ishq",
+      "genre": "Bollywood Hip-Hop / Qawwali Fusion / Dance-Pop"
+    },
+    {
+      "id": 70,
+      "title": "Kya Mujhe Pyar Hai",
+      "genre": "Bollywood Pop Rock / Filmi / Romantic Ballad"
+    },
+    {
+      "id": 69,
+      "title": "Smooth Criminal - 2012 Remaster",
+      "genre": "Pop / Funk / Dance-Pop / New Jack Swing"
+    },
+    {
+      "id": 68,
+      "title": "Dirty Diana",
+      "genre": "Hard Rock / Pop Rock / Arena Rock"
+    },
+    {
+      "id": 67,
+      "title": "Billie Jean",
+      "genre": "Post-Disco / Pop / Funk / Dance-Pop"
+    },
+    {
+      "id": 66,
+      "title": "Smooth Operator",
+      "genre": "Sophisti-Pop / Smooth Jazz / Quiet Storm / Soul"
+    },
+    {
+      "id": 65,
+      "title": "Borderline",
+      "genre": "Psychedelic Pop / Nu-Disco / Synthpop"
+    },
+    {
+      "id": 64,
+      "title": "The Less I Know The Better",
+      "genre": "Psychedelic Pop / Nu-Disco / Funk Rock"
+    },
+    {
+      "id": 63,
+      "title": "Tu Meri",
+      "genre": "Bollywood Dance-Pop / Electro-Pop / Filmi"
+    },
+    {
+      "id": 62,
+      "title": "Aadat Se Majboor",
+      "genre": "Bollywood Hip-Hop / Dance-Pop / Filmi"
+    },
+    {
+      "id": 61,
+      "title": "Cant Take My Eyes off You",
+      "genre": "Blue-Eyed Soul / Traditional Pop / Baroque Pop"
+    },
+    {
+      "id": 60,
+      "title": "Bakamitai - Taxi Driver Edition",
+      "genre": "Kay\u014dkyoku / J-Pop Ballad / Enka-Pop"
+    },
+    {
+      "id": 59,
+      "title": "Kalank - Title Track",
+      "genre": "Bollywood Romantic Ballad / Orchestral Pop / Filmi"
+    },
+    {
+      "id": 58,
+      "title": "Die With A Smile",
+      "genre": "Soft Rock / Pop Soul / Ballad"
+    },
+    {
+      "id": 57,
+      "title": "I Aint Worried",
+      "genre": "Pop Rock / Sunshine Pop / Dance-Pop"
+    },
+    {
+      "id": 56,
+      "title": "Sapphire",
+      "genre": "Punjabi Pop"
+    },
+    {
+      "id": 55,
+      "title": "Zara Sa",
+      "genre": "Bollywood Pop Rock / Filmi / Romantic Ballad"
+    },
+    {
+      "id": 54,
+      "title": "Tere Liye",
+      "genre": "Bollywood Romantic Ballad / Filmi / Pop"
+    },
+    {
+      "id": 53,
+      "title": "Dhurandhar - Title Track",
+      "genre": "Desi Hip-Hop / Punjabi Trap / Hardcore Hip-Hop"
+    },
+    {
+      "id": 52,
+      "title": "Rasputin",
+      "genre": "Euro-Disco / Disco / Europop"
+    },
+    {
+      "id": 51,
+      "title": "Naal Nachna",
+      "genre": "Punjabi Pop / Bhangra / Dance-Pop"
+    },
+    {
+      "id": 50,
+      "title": "Thriller",
+      "genre": "Disco / Post-Disco / Funk / Pop"
+    },
+    {
+      "id": 49,
+      "title": "Last Christmas",
+      "genre": "Synthpop / Holiday Pop / Sophisti-Pop"
+    },
+    {
+      "id": 48,
+      "title": "Shinunoga E-Wa",
+      "genre": "J-Pop / R&B / Kay\u014dkyoku"
+    },
+    {
+      "id": 47,
+      "title": "505",
+      "genre": "Indie Rock / Alternative Rock"
+    },
+    {
+      "id": 46,
+      "title": "Pungi",
+      "genre": "Bollywood Dance-Pop / Bhangra Pop / Filmi"
+    },
+    {
+      "id": 45,
+      "title": "Yaad Aa Raha Hai",
+      "genre": "Bollywood Disco / Synth-Disco / Filmi"
+    },
+    {
+      "id": 44,
+      "title": "Maston Ka Jhund",
+      "genre": "Bollywood Folk Rock / Bhangra Rock / Filmi"
+    },
+    {
+      "id": 43,
+      "title": "Get Lucky Radio Edit feat. Pharrell Williams and Nile Rodgers",
+      "genre": "Nu-Disco / Funk / French House / Dance-Pop"
+    },
+    {
+      "id": 42,
+      "title": "I Was Made For Lovin You",
+      "genre": "Disco Rock / Hard Rock / Glam Rock"
+    },
+    {
+      "id": 41,
+      "title": "Bye Bye Bye",
+      "genre": "Teen Pop / Dance-Pop / Electropop"
+    },
+    {
+      "id": 40,
+      "title": "You Give Love A Bad Name",
+      "genre": "Glam Metal / Arena Rock / Hard Rock"
+    },
+    {
+      "id": 39,
+      "title": "I Wanna Be Yours",
+      "genre": "Indie Rock / Psychedelic Rock / Alternative Rock"
+    },
+    {
+      "id": 38,
+      "title": "Chura Ke Dil Mera",
+      "genre": "90s Bollywood Pop / Filmi / Romantic Dance-Pop"
+    },
+    {
+      "id": 37,
+      "title": "Feel It",
+      "genre": "Indie Pop / Alternative R&B / Bedroom Pop"
+    },
+    {
+      "id": 36,
+      "title": "Aari Aari (LYRICS) - Dhurandhar The Revenge | Shashwat Sachdev, Bombay Rockers",
+      "genre": "Punjabi Pop / Bhangra Hip-Hop / Dance-Pop"
+    },
+    {
+      "id": 35,
+      "title": "Jaan Se Guzarte Hain",
+      "genre": "Sufi / Punjabi Soul / Ghazal Fusion"
+    },
+    {
+      "id": 34,
+      "title": "Vaari Jaavan",
+      "genre": "Punjabi Pop / Bhangra / Urban Punjabi"
+    },
+    {
+      "id": 33,
+      "title": "Careless Whisper",
+      "genre": "Sophisti-Pop / Smooth Jazz / Blue-Eyed Soul / Pop Ballad"
+    },
+    {
+      "id": 32,
+      "title": "Gehra Hua-Dhurandhar",
+      "genre": "Bollywood Romantic Ballad / Filmi / Sufi Pop"
+    }
+  ],
+  "unmatched": []
+}

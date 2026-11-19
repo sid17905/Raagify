@@ -1,8 +1,8 @@
 # Raagify architecture and API
 
-**Observed (source):** Java 21 / Spring Boot 3.5.0, Spring JDBC with transactions, MySQL and Flyway, React 19.1.0 / Vite 6.3.5, and Python FastAPI. JDBC follows the supplied starter; no JPA entities are serialized.
+**Observed (source):** Java 21 / Spring Boot 3.5.0, Spring JDBC with transactions, MySQL and Flyway, React 19.1.0 / Vite 6.3.5, and Python FastAPI media processor. JDBC follows the supplied starter; no JPA entities are serialized.
 
-**Observed (source):** `users`, `songs`, `playlists`, `playlist_songs`, `liked_songs`, and `play_history` are created by Flyway V1. Foreign keys cascade dependent rows on song/playlist deletion. Likes and playlist entries have composite uniqueness; playlist positions are unique. Playlist mutations lock the owner row and use READ COMMITTED to see additions made by concurrent transactions after waiting for that lock.
+**Observed (source):** `users`, `songs`, `playlists`, `playlist_songs`, `liked_songs`, and `play_history` are created by Flyway V1. V2 adds genre-source metadata; V3 retires classifier columns without changing already-applied migrations. Foreign keys cascade dependent rows on song/playlist deletion. Likes and playlist entries have composite uniqueness; playlist positions are unique. Playlist mutations lock the owner row and use READ COMMITTED to see additions made by concurrent transactions after waiting for that lock.
 
 **Observed (source):** Browser -> same-origin `/api` -> Spring security -> validated controller -> transactional service -> JDBC -> MySQL -> DTO. Native audio also uses `/api`, so it sends the HttpOnly session cookie. CSRF is required for registration, login, logout, uploads, and all other writes. Form login uses Spring's authentication filter and session fixation protection. Tokens are fetched through `/auth/csrf` and refreshed after login/logout.
 
@@ -32,7 +32,7 @@
 | Observed (source) | POST `/api/admin/songs` | ADMIN; multipart title/artist/album/genre/durationSeconds/audio/cover |
 | Observed (source) | PUT/DELETE `/api/admin/songs/{id}` | ADMIN metadata editing / deletion |
 | Observed (source) | POST `/api/admin/songs/{id}/features/retry` | ADMIN retries extraction, preserving an admin genre override |
-| Observed (source) | Python POST `/analyze-file` | Multipart file -> 27 features + genre + placeholder/source flags |
+| Observed (source) | Python POST `/analyze-file` | Multipart file -> 27 real DSP features + embedded genre or Unclassified + source/availability |
 
 **Observed (source):** API errors have `{code,message,fieldErrors}`. Validation/malformed inputs return 400, unauthenticated requests 401, forbidden ownership/roles 403, missing records 404, duplicates 409, and oversize uploads 413. Unexpected server errors return a generic 500. DTOs expose no password hash, absolute file path, or feature vector.
 
@@ -44,14 +44,20 @@
 
 **Observed (source):** Each view handles loading, API failures, and empty collections. Auth restoration finishes before route decisions. The player exposes buffering/playback/history errors, play/pause, next/previous, seek and volume; queue and playback state are in-memory browser state.
 
-## Optional genre model
+## Media processing and genre tags
 
-**Observed:** No trained genre model was supplied in this workspace. Feature extraction is real DSP; `Unclassified` with `genreSource=PLACEHOLDER` is an explicit placeholder genre prediction. Administrator genre overrides remain authoritative.
+**Observed (source):** The Python processor has no trained classifier or model download. `/health` returns status and the `raagify-v1` DSP schema; `/analyze-file` returns a finite 27-value vector and embedded genre tags (`METADATA`) or `Unclassified` (`UNCLASSIFIED`). `/metadata-file` returns cleaned title, artist, album, genre, duration and optional base64 artwork. `/artwork-file` returns decoded/re-encoded embedded cover data. Spring calls this private service through `MEDIA_SERVICE_URL` with bounded connect/read timeouts.
 
-**Observed (source):** `GENRE_MODEL_PATH` loads a trusted joblib/sklearn predictor with a matching adjacent `<model-path>.json` manifest. Its `featureSchema` must be `raagify-v1`; `featureNames` must exactly match `features.FEATURE_NAMES`: MFCC 0..12, spectral_centroid in Hz, tempo in BPM, chroma 0..11. The predictor receives the raw 27-column feature matrix. Recommendation vectors scale MFCC by 100, centroid by Nyquist (11025 Hz), and tempo by 240; chroma is normalized by energy.
+**Observed (source):** DSP uses MFCC 0–12, spectral centroid, tempo and chroma 0–11. MFCC values scale by 100, centroid by Nyquist and tempo by 240 in recommendation vectors; chroma is energy-normalized. These are signal features, not genre predictions. Administrator genre overrides take priority and survive metadata/feature retries. Slash-separated tags are compared individually using normalized overlap.
 
-**Recommendation:** Export a trusted sklearn pipeline that includes the preprocessing expected by the supplied model. Produce the manifest using `{"featureSchema": features.FEATURE_SCHEMA, "featureNames": features.FEATURE_NAMES}`. A GTZAN model trained with different features needs an explicit adapter with its original preprocessing; changing the manifest alone cannot make an incompatible model correct. Joblib files are private administrator-provisioned artifacts, never listener uploads.
+| Classification | Additional API | Contract |
+| --- | --- | --- |
+| Observed (source) | POST `/api/admin/songs/metadata` | ADMIN; multipart file, embedded details for upload preview |
+| Observed (source) | POST `/api/admin/songs/{id}/metadata/refresh` | ADMIN; cleaned metadata, preserving curated genres |
+| Observed (source) | POST `/api/admin/songs/{id}/artwork/restore` | ADMIN; restore an embedded cover when missing |
+| Observed (source) | POST `/api/admin/songs/artwork/restore` | ADMIN; summary of restored/unchanged/failed covers |
+| Observed (source) | GET `/api/admin/analytics?days=30` | ADMIN; 7–90 days, UTC aggregates, individual genre tags, covers and processor health |
 
-**Unverified:** Trained-model loading and classification accuracy were not exercised because no compatible trained model or dataset was supplied.
+**Observed (source):** During processor downtime, uploads persist with PENDING features and recommendations use genre/popularity fallback. Retrying processing recovers features/artwork without overwriting `ADMIN_OVERRIDE`. Song DTOs expose `genreSource` and `featureStatus`; retired model/confidence fields are absent.
 
 **Recommendation:** Before public hosting, terminate HTTPS, configure secure session cookies, keep the Python service on a private network, and configure backups for both MySQL and media volumes. Rate limiting, transcoding and durable job scheduling are future operational additions; they are not claimed as implemented.

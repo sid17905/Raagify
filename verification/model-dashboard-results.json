@@ -1,0 +1,20 @@
+[
+  {
+    "classification": "Observed",
+    "check": "authenticated embedded metadata preview and title cleanup",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "real trained genre and exact embedded artwork saved on upload",
+    "passed": true,
+    "details": "classical"
+  },
+  {
+    "classification": "Observed",
+    "check": "existing catalog download labels removed and real artwork available",
+    "passed": true,
+    "details": ""
+  }
+]

@@ -1,0 +1,37 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------< com.raagify:raagify-backend >---------------------
+[INFO] Building Raagify 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ raagify-backend ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ raagify-backend ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 15 source files with javac [debug parameters release 21] to target\classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ raagify-backend ---
+[INFO] skip non existing resourceDirectory E:\Raagify\backend\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ raagify-backend ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 2 source files with javac [debug parameters release 21] to target\test-classes
+[INFO] 
+[INFO] --- surefire:3.5.3:test (default-test) @ raagify-backend ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.2:jar (default-jar) @ raagify-backend ---
+[INFO] Building jar: E:\Raagify\backend\target\raagify-backend-1.0.0.jar
+[INFO] 
+[INFO] --- spring-boot:3.5.0:repackage (repackage) @ raagify-backend ---
+[INFO] Replacing main artifact E:\Raagify\backend\target\raagify-backend-1.0.0.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to E:\Raagify\backend\target\raagify-backend-1.0.0.jar.original
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  16.589 s
+[INFO] Finished at: 2026-11-19T12:07:01+05:30
+[INFO] ------------------------------------------------------------------------

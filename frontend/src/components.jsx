@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { write, message } from "./api";
 import { usePlayer, formatTime } from "./PlayerContext";
@@ -42,15 +42,15 @@ export function State({
   return children;
 }
 export function Cover({ song }) {
+  const [failed, setFailed] = useState(false);
+  useEffect(() => setFailed(false), [song.coverUrl]);
   return (
     <div className={`cover tone-${song.id % 5}`}>
-      {song.coverUrl ? (
+      {song.coverUrl && !failed ? (
         <img
           src={song.coverUrl}
           alt={`${song.title} cover`}
-          onError={(e) => {
-            e.currentTarget.style.display = "none";
-          }}
+          onError={() => setFailed(true)}
         />
       ) : (
         <span aria-hidden="true">♫</span>

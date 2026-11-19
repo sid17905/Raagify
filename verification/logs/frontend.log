@@ -34,3 +34,58 @@
 10:31:18 AM [vite] (client) hmr update /src/BatchUpload.jsx
 10:31:18 AM [vite] (client) hmr update /src/App.jsx
 10:33:55 AM [vite] (client) hmr update /src/styles.css
+12:03:22 PM [vite] (client) hmr update /src/components.jsx
+12:03:23 PM [vite] (client) hmr update /src/components.jsx
+12:03:24 PM [vite] (client) hmr update /src/App.jsx
+12:06:37 PM [vite] (client) hmr update /src/App.jsx
+12:08:22 PM [vite] (client) hmr update /src/styles.css
+12:08:22 PM [vite] (client) hmr update /src/App.jsx
+12:08:27 PM [vite] (client) hmr update /src/AnalyticsDashboard.jsx
+12:08:27 PM [vite] (client) hmr update /src/App.jsx
+12:08:28 PM [vite] (client) hmr update /src/components.jsx
+12:08:28 PM [vite] (client) hmr update /src/styles.css
+12:17:26 PM [vite] (client) hmr update /src/BatchUpload.jsx
+12:17:28 PM [vite] (client) hmr update /src/BatchUpload.jsx
+12:18:50 PM [vite] (client) hmr update /src/App.jsx
+12:20:33 PM [vite] (client) hmr update /src/App.jsx
+12:20:34 PM [vite] (client) hmr update /src/BatchUpload.jsx
+12:20:34 PM [vite] (client) hmr update /src/BatchUpload.jsx, /src/App.jsx
+12:23:18 PM [vite] (client) hmr update /src/BatchUpload.jsx, /src/App.jsx
+12:26:58 PM [vite] (client) hmr update /src/AnalyticsDashboard.jsx
+1:07:40 PM [vite] (client) hmr update /src/AnalyticsDashboard.jsx
+1:26:03 PM [vite] http proxy error: /api/songs?size=50&page=0
+Error: connect ECONNREFUSED 127.0.0.1:18080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1645:16)
+1:26:03 PM [vite] http proxy error: /api/songs?size=50&page=0
+Error: connect ECONNREFUSED 127.0.0.1:18080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1645:16)
+1:26:04 PM [vite] http proxy error: /api/songs?size=50&page=0
+Error: connect ECONNREFUSED 127.0.0.1:18080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1645:16)
+1:26:05 PM [vite] http proxy error: /api/songs?size=50&page=0
+Error: connect ECONNREFUSED 127.0.0.1:18080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1645:16)
+1:26:05 PM [vite] http proxy error: /api/songs?size=50&page=0
+Error: connect ECONNREFUSED 127.0.0.1:18080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1645:16)
+1:26:06 PM [vite] http proxy error: /api/songs?size=50&page=0
+Error: connect ECONNREFUSED 127.0.0.1:18080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1645:16)
+1:29:25 PM [vite] (client) hmr update /src/AnalyticsDashboard.jsx
+1:29:27 PM [vite] (client) hmr update /src/App.jsx
+1:29:28 PM [vite] (client) hmr update /src/BatchUpload.jsx
+1:29:35 PM [vite] http proxy error: /api/songs?size=50&page=0
+Error: connect ECONNREFUSED 127.0.0.1:18080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1645:16)
+1:29:36 PM [vite] http proxy error: /api/songs?size=50&page=0
+Error: connect ECONNREFUSED 127.0.0.1:18080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1645:16)
+1:29:37 PM [vite] http proxy error: /api/songs?size=50&page=0
+Error: connect ECONNREFUSED 127.0.0.1:18080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1645:16)
+1:29:37 PM [vite] http proxy error: /api/songs?size=50&page=0
+Error: connect ECONNREFUSED 127.0.0.1:18080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1645:16)
+1:30:07 PM [vite] (client) hmr update /src/App.jsx
+1:30:08 PM [vite] (client) hmr update /src/AnalyticsDashboard.jsx
+1:30:50 PM [vite] (client) hmr update /src/BatchUpload.jsx

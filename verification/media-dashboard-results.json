@@ -1,0 +1,98 @@
+[
+  {
+    "classification": "Observed",
+    "check": "authenticated embedded metadata preview and title cleanup",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "real DSP features and exact embedded artwork saved without genre guessing",
+    "passed": true,
+    "details": "Unclassified"
+  },
+  {
+    "classification": "Observed",
+    "check": "all 60 curated genre sets and embedded covers preserved",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "existing catalog download labels removed and real artwork available",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "existing song cover decodes visibly in browser",
+    "passed": true,
+    "details": "91"
+  },
+  {
+    "classification": "Observed",
+    "check": "existing MP3 plays, seeks and resumes through authenticated Range 206",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "analytics dashboard and selectable time period render real data",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "analytics mobile layout has no horizontal overflow",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "single upload automatically uses embedded title, artist, album, duration and artwork",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "batch metadata prefills required fields and preserves numeric title 505",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "no browser page errors",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "analytics period/genre totals agree with persisted aggregate data",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "media processor down preserves upload and analytics availability",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "feature retry recovers artwork while preserving curated genre",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "DSP status and exact artwork persist after backend restart",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "listener cannot access analytics or privileged metadata extraction",
+    "passed": true,
+    "details": ""
+  }
+]

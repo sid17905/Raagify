@@ -122,7 +122,7 @@ class ApiIntegrationTest {
     @Test void uploadRealFeaturesRangeAndSearch() throws Exception {
         var admin=admin();var response=upload(admin,wave(),"audio/wav","");assertEquals(201,response.statusCode());
         var metadata=node(response);long id=metadata.get("id").asLong();assertEquals("READY",metadata.get("featureStatus").asText());
-        assertEquals("PLACEHOLDER",metadata.get("genreSource").asText());assertFalse(metadata.has("audioStorageName"));
+        assertEquals("UNCLASSIFIED",metadata.get("genreSource").asText());assertFalse(metadata.has("genreConfidence"));assertFalse(metadata.has("audioStorageName"));
         String stored=jdbc.queryForObject("SELECT audio_storage_name FROM songs WHERE id=?",String.class,id);assertTrue(stored.matches("[a-f0-9-]{36}\\.wav"));
         var c=listener();byte[] wav=wave();
         for(String range:new String[]{"bytes=0-31","bytes=-16","bytes=32-"}){
@@ -149,5 +149,12 @@ class ApiIntegrationTest {
         var a=CompletableFuture.supplyAsync(()->{try{return c.write("POST","/playlists/"+p+"/songs/"+s1,null).statusCode();}catch(Exception e){throw new RuntimeException(e);}});
         var b=CompletableFuture.supplyAsync(()->{try{return c.write("POST","/playlists/"+p+"/songs/"+s2,null).statusCode();}catch(Exception e){throw new RuntimeException(e);}});
         assertEquals(201,a.get());assertEquals(201,b.get());assertEquals(2,node(c.get("/playlists/"+p)).get("songs").size());
+    }
+    @Test void analyticsUsesPersistedDataAndIsAdminOnly() throws Exception {
+        var a=admin();var c=listener();assertEquals(403,c.get("/admin/analytics").statusCode());assertEquals(400,a.get("/admin/analytics?days=2").statusCode());
+        var before=node(a.get("/admin/analytics?days=7"));long s=song(a);long p=playlist(c);c.write("POST","/likes/"+s,null);c.write("POST","/songs/"+s+"/plays",null);c.write("POST","/songs/"+s+"/plays",null);
+        var after=node(a.get("/admin/analytics?days=7"));assertTrue(after.get("totals").get("songs").asLong()>=before.get("totals").get("songs").asLong()+1);assertTrue(after.get("period").get("plays").asLong()>=before.get("period").get("plays").asLong()+2);
+        assertEquals(7,after.get("dailyPlays").size());long sum=0;for(var day:after.get("dailyPlays"))sum+=day.get("plays").asLong();assertEquals(after.get("period").get("plays").asLong(),sum);
+        assertEquals("UTC",after.get("timezone").asText());assertEquals("UP",after.get("processor").get("status").asText());assertFalse(after.toString().contains("password"));
     }
 }

@@ -9,6 +9,7 @@ import java.nio.channels.FileChannel;
 import java.nio.file.StandardOpenOption;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/api/songs")
@@ -68,4 +69,8 @@ class AdminSongController {
     @PutMapping("/{id}") Songs.SongDto update(@PathVariable long id,@Valid @RequestBody Songs.Update request){return songs.update(id,request);}
     @DeleteMapping("/{id}") ResponseEntity<Void> delete(@PathVariable long id) throws IOException {songs.delete(id);return ResponseEntity.noContent().build();}
     @PostMapping("/{id}/features/retry") Songs.SongDto retry(@PathVariable long id) { return songs.retryFeatures(id); }
+    @PostMapping("/{id}/artwork/restore") Songs.SongDto restoreArtwork(@PathVariable long id){return songs.restoreArtwork(id);}
+    @PostMapping("/artwork/restore") Songs.ArtworkSummary restoreAll(){return songs.restoreAllArtwork();}
+    @PostMapping(value="/metadata",consumes="multipart/form-data") MediaClient.Metadata metadata(@RequestParam("file") MultipartFile file) throws IOException{return songs.previewMetadata(file);}
+    @PostMapping("/{id}/metadata/refresh") Songs.SongDto refreshMetadata(@PathVariable long id){return songs.refreshMetadata(id);}
 }

@@ -3,7 +3,7 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y --no-install-recommends libsndfile1 && rm -rf /var/lib/apt/lists/*
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
-COPY app.py features.py ./
+COPY app.py features.py artwork.py metadata.py ./
 RUN useradd -r -u 10001 raagify
 USER raagify
 EXPOSE 8000

@@ -1,0 +1,16 @@
+Observed: PASS authenticated embedded metadata preview and title cleanup 
+Observed: PASS real DSP features and exact embedded artwork saved without genre guessing Unclassified
+Observed: PASS all 60 curated genre sets and embedded covers preserved 
+Observed: PASS existing catalog download labels removed and real artwork available 
+Observed: PASS existing song cover decodes visibly in browser 91
+Observed: PASS existing MP3 plays, seeks and resumes through authenticated Range 206 
+Observed: PASS analytics dashboard and selectable time period render real data 
+Observed: PASS analytics mobile layout has no horizontal overflow 
+Observed: PASS single upload automatically uses embedded title, artist, album, duration and artwork 
+Observed: PASS batch metadata prefills required fields and preserves numeric title 505 
+Observed: PASS no browser page errors 
+Observed: PASS analytics period/genre totals agree with persisted aggregate data 
+Observed: PASS media processor down preserves upload and analytics availability 
+Observed: PASS feature retry recovers artwork while preserving curated genre 
+Observed: PASS DSP status and exact artwork persist after backend restart 
+Observed: PASS listener cannot access analytics or privileged metadata extraction 

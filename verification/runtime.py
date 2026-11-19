@@ -45,8 +45,8 @@ def environment():
         AUDIO_STORAGE_PATH=str(RUNTIME / "audio"),
         COVER_STORAGE_PATH=str(RUNTIME / "covers"),
         SERVER_PORT="18080",
-        ML_BASE_URL="http://127.0.0.1:18000",
-        ML_READ_TIMEOUT_MS="3000",
+        MEDIA_SERVICE_URL="http://127.0.0.1:18000",
+        MEDIA_READ_TIMEOUT_MS="15000",
         DEV_API_TARGET="http://127.0.0.1:18080",
         PYTHONPATH=str(ROOT / ".cache" / "python"),
     )
@@ -225,16 +225,16 @@ def mysql():
     print("Observed: isolated MySQL 8.4 on 33317; schema raagify_test", flush=True)
 
 
-def start_ml():
+def start_media():
     launch(
-        "ml",
+        "media",
         [
             sys.executable,
             "-m",
             "uvicorn",
             "app:app",
             "--app-dir",
-            str(ROOT / "ml-service"),
+            str(ROOT / "media-service"),
             "--host",
             "127.0.0.1",
             "--port",
@@ -261,7 +261,7 @@ if __name__ == "__main__":
     action = sys.argv[1]
     if action == "setup":
         mysql()
-        start_ml()
+        start_media()
     elif action == "start":
         start_backend()
         launch(
@@ -313,8 +313,8 @@ if __name__ == "__main__":
         )
     elif action == "python-tests":
         sys.exit(
-            run(action, [sys.executable, "-m", "pytest", "-q"], ROOT / "ml-service")
+            run(action, [sys.executable, "-m", "pytest", "-q"], ROOT / "media-service")
         )
     elif action == "stop":
-        for name in ["frontend", "backend", "ml", "mysql"]:
+        for name in ["frontend", "backend", "media", "mysql"]:
             stop(name)

@@ -1,0 +1,13 @@
+
+> raagify-frontend@1.0.0 build
+> vite build
+
+vite v6.3.5 building for production...
+transforming...
+✓ 90 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.40 kB │ gzip:  0.27 kB
+dist/assets/index-BbtvwWd_.css   21.41 kB │ gzip:  5.41 kB
+dist/assets/index-BO1sXmso.js   285.51 kB │ gzip: 92.85 kB
+✓ built in 5.77s

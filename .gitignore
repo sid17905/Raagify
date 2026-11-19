@@ -11,12 +11,11 @@
 /CHANGELOG.md
 /REA_*.md
 /docs/REA_GUIDE_INDEX.md
+/ml-service/
 tools/apache-maven-*/
 data/
 verification/runtime/
 verification/*.png
-ml-service/models/*
-!ml-service/models/.gitkeep
 *.log
 *.bundle
 !verification/logs/*.log

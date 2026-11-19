@@ -37,7 +37,8 @@ public class ApiExceptionHandler {
         return ResponseEntity.status(413).body(new ApiError("FILE_TOO_LARGE", "Upload exceeds the configured request limit", Map.of()));
     }
     @ExceptionHandler({org.springframework.web.method.annotation.MethodArgumentTypeMismatchException.class,
-        org.springframework.web.bind.MissingServletRequestParameterException.class})
+        org.springframework.web.bind.MissingServletRequestParameterException.class,
+        org.springframework.web.multipart.support.MissingServletRequestPartException.class})
     ResponseEntity<ApiError> invalidParameter(Exception ex) {
         return ResponseEntity.badRequest().body(new ApiError("BAD_REQUEST", "Invalid or missing request parameter", Map.of()));
     }

@@ -17,7 +17,7 @@ skip = {
     ".venv",
     "runtime",
 }
-folders = {"backend", "frontend", "ml-service", "docs", "verification"}
+folders = {"backend", "frontend", "media-service", "docs", "verification", "pics"}
 files = {
     "README.md",
     ".env.example",
@@ -26,6 +26,7 @@ files = {
     "compose.yaml",
     "tools/maven.py",
     "tools/publish.py",
+    "tools/readme_screenshots.py",
 }
 selected = [ROOT / x for x in files]
 for folder in folders:
@@ -33,7 +34,11 @@ for folder in folders:
         if p.is_file() and not any(
             part in skip for part in p.relative_to(ROOT / folder).parts
         ):
-            if folder == "ml-service" and "models" in p.parts and p.name != ".gitkeep":
+            if (
+                folder == "media-service"
+                and "models" in p.parts
+                and p.name != ".gitkeep"
+            ):
                 continue
             if folder == "docs" and p.name == "REA_GUIDE_INDEX.md":
                 continue
@@ -56,11 +61,31 @@ git = [
     "-C",
     str(DEST),
 ]
+# Remove stale tracked deliverables after source renames/removals. Each target is
+# checked inside the isolated checkout before Git removes its publishing copy.
+tracked = (
+    subprocess.run([*git, "ls-files", "-z"], check=True, capture_output=True)
+    .stdout.decode("utf-8")
+    .split("\0")
+)
+for relative in filter(None, tracked):
+    parts = Path(relative).parts
+    managed = parts[0] in folders or parts[0] == "ml-service" or relative in files
+    if managed and not (ROOT / relative).is_file():
+        target = (DEST / relative).resolve()
+        if DEST.resolve() not in target.parents:
+            raise SystemExit("Refusing to remove a file outside publishing checkout")
+        subprocess.run(
+            [*git, "rm", "-f", "--", relative], check=True, capture_output=True
+        )
 subprocess.run([*git, "add", "--all"], check=True)
 subprocess.run([*git, "add", "--renormalize", "."], check=True)
-validation=subprocess.run(
+validation = subprocess.run(
     [*git, "diff", "--cached", "--check", "--", ".", ":(exclude)verification/logs/**"],
-    capture_output=True,text=True,encoding="utf-8",errors="replace",
+    capture_output=True,
+    text=True,
+    encoding="utf-8",
+    errors="replace",
 )
 if validation.returncode:
     print("\n".join(validation.stdout.splitlines()[:20]))

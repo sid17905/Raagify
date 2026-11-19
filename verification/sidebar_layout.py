@@ -35,7 +35,7 @@ def main():
                 assert page.evaluate(
                     "document.documentElement.scrollWidth <= innerWidth"
                 ), (width, height, route)
-                assert page.locator(".sidebar nav a").count() == 6
+                assert page.locator(".sidebar nav a").count() == 7
                 sidebar = page.locator(".sidebar")
                 sidebar.evaluate(
                     "element => { element.scrollTop = element.scrollHeight; }"
@@ -55,7 +55,7 @@ def main():
                     assert metrics["waveLeft"] >= 0
                     assert metrics["noteBottom"] <= metrics["profileTop"] + 1
                 else:
-                    assert width <= 750 or height <= 780
+                    assert width <= 750 or height <= 820
                 assert metrics["profileBottom"] <= metrics["playerTop"] + 1
                 results.append(
                     {

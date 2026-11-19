@@ -58,19 +58,20 @@ public class Songs {
         "image/jpeg","jpg", "image/png","png", "image/webp","webp");
     private final JdbcTemplate jdbc;
     private final Accounts accounts;
-    private final MlClient ml;
+    private final MediaClient media;
+    private final Artwork artwork;
     private final ObjectMapper json;
     private final Path audioRoot;
     private final Path coverRoot;
     private final long audioMax;
     private final long coverMax;
 
-    public Songs(JdbcTemplate jdbc, Accounts accounts, MlClient ml, ObjectMapper json,
+    public Songs(JdbcTemplate jdbc, Accounts accounts, MediaClient media, Artwork artwork, ObjectMapper json,
                  @Value("${app.storage.audio-path}") String audioPath,
                  @Value("${app.storage.cover-path}") String coverPath,
                  @Value("${app.storage.audio-max-bytes}") long audioMax,
                  @Value("${app.storage.cover-max-bytes}") long coverMax) throws IOException {
-        this.jdbc=jdbc; this.accounts=accounts; this.ml=ml; this.json=json;
+        this.jdbc=jdbc; this.accounts=accounts; this.media=media; this.artwork=artwork; this.json=json;
         this.audioRoot=Path.of(audioPath).toAbsolutePath().normalize();
         this.coverRoot=Path.of(coverPath).toAbsolutePath().normalize();
         this.audioMax=audioMax; this.coverMax=coverMax;
@@ -101,6 +102,8 @@ public class Songs {
     public SongDto upload(Upload request) throws IOException {
         var actor=accounts.current();
         if(!actor.role().equals("ADMIN")) throw new ApiException(403,"Admin access required");
+        String displayTitle=MetadataText.clean(request.getTitle(),true),displayArtist=MetadataText.clean(request.getArtist(),false);
+        if(displayTitle==null||displayArtist==null)throw new ApiException(400,"Title and artist are required after removing download-site markers");
         MultipartFile audio=request.getAudio(), cover=request.getCover();
         validate(audio,AUDIO_TYPES,audioMax,true);
         if(cover!=null && !cover.isEmpty()) validate(cover,COVER_TYPES,coverMax,false);
@@ -116,15 +119,17 @@ public class Songs {
                         if (status != STATUS_COMMITTED) { removeFile(audioFile); if (coverFile != null) removeFile(coverFile); }
                     }
                 });
-            MlClient.Analysis analysis=ml.analyze(audioFile);
+            MediaClient.Analysis analysis=media.analyze(audioFile);
             boolean ready=analysis.available() && analysis.vector()!=null && !analysis.vector().isEmpty();
             String supplied=clean(request.getGenre());
-            String genre=supplied!=null?supplied:(ready?clean(analysis.predictedGenre()):null);
+            String genre=supplied!=null?supplied:(ready?clean(analysis.genre()):null);
             String genreSource=supplied!=null?"ADMIN_OVERRIDE":(ready?analysis.genreSource():"PENDING");
             String vector=ready?json.writeValueAsString(analysis.vector()):null;
             jdbc.update("INSERT INTO songs(title,artist,album_name,genre,duration_seconds,audio_storage_name,audio_content_type,audio_size_bytes,cover_storage_name,cover_content_type,feature_vector,feature_status,genre_source) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                request.getTitle().trim(),request.getArtist().trim(),clean(request.getAlbum()),genre,request.getDurationSeconds(),audioName,audio.getContentType(),Files.size(audioFile),coverName,coverName==null?null:cover.getContentType(),vector,ready?"READY":"PENDING",genreSource);
+                displayTitle,displayArtist,MetadataText.clean(request.getAlbum(),false),genre,request.getDurationSeconds(),audioName,audio.getContentType(),Files.size(audioFile),coverName,coverName==null?null:cover.getContentType(),vector,ready?"READY":"PENDING",genreSource);
             Long id=jdbc.queryForObject("SELECT LAST_INSERT_ID()",Long.class);
+
+            if(coverName==null)artwork.restore(id,audioFile);
             return get(id);
         } catch(IOException|RuntimeException error) {
             Files.deleteIfExists(audioFile); if(coverFile!=null) Files.deleteIfExists(coverFile); throw error;
@@ -134,7 +139,7 @@ public class Songs {
     @Transactional
     public SongDto update(long id, Update request) {
         requireAdmin(); requireSong(id);
-        int changed=jdbc.update("UPDATE songs SET title=?,artist=?,album_name=?,genre=?,duration_seconds=?,genre_source=CASE WHEN ? IS NOT NULL THEN 'ADMIN_OVERRIDE' ELSE genre_source END WHERE id=?",
+        int changed=jdbc.update("UPDATE songs SET title=?,artist=?,album_name=?,genre=?,duration_seconds=?,genre_source=CASE WHEN ? IS NOT NULL THEN 'ADMIN_OVERRIDE' ELSE 'UNCLASSIFIED' END WHERE id=?",
             request.title().trim(),request.artist().trim(),clean(request.album()),clean(request.genre()),request.durationSeconds(),clean(request.genre()),id);
         if(changed==0) throw new ApiException(404,"Song not found");
         return get(id);
@@ -161,14 +166,32 @@ public class Songs {
     @Transactional
     public SongDto retryFeatures(long id) {
         requireAdmin(); SongDto song = get(id);
-        var result = ml.analyze(audio(id).path());
+        var result = media.analyze(audio(id).path());
         if (result.available()) {
             try {
                 jdbc.update("UPDATE songs SET feature_vector=?,feature_status='READY',genre=CASE WHEN genre_source='ADMIN_OVERRIDE' THEN genre ELSE ? END,genre_source=CASE WHEN genre_source='ADMIN_OVERRIDE' THEN genre_source ELSE ? END WHERE id=?",
-                    json.writeValueAsString(result.vector()),result.predictedGenre(),result.genreSource(),id);
+                    json.writeValueAsString(result.vector()),result.genre(),result.genreSource(),id);
             } catch (JsonProcessingException ex) { throw new ApiException(400,"Invalid feature response"); }
         }
+        artwork.restore(id,audio(id).path());
         return get(id);
+    }
+
+    public SongDto restoreArtwork(long id){requireAdmin();var stored=audio(id);artwork.restore(id,stored.path());return get(id);}
+    public MediaClient.Metadata previewMetadata(MultipartFile file) throws IOException {requireAdmin();validate(file,AUDIO_TYPES,audioMax,true);return media.metadata(file);}
+    public SongDto refreshMetadata(long id){
+        requireAdmin();var song=get(id);var tags=media.metadata(audio(id).path());
+        String title=MetadataText.clean(song.title(),true),artist=MetadataText.clean(song.artist(),false),album=MetadataText.clean(song.album(),false);
+        if(tags!=null){if(tags.title()!=null&&!tags.title().isBlank()&&(!java.util.Objects.equals(title,song.title())||song.title().replaceFirst("^\\d{1,3}[ _-]+","").equalsIgnoreCase(tags.title())))title=tags.title();if((artist==null||artist.equalsIgnoreCase("Unknown artist"))&&tags.artist()!=null)artist=tags.artist();if(album==null&&tags.album()!=null)album=tags.album();}
+        if(title!=null&&artist!=null)jdbc.update("UPDATE songs SET title=?,artist=?,album_name=? WHERE id=?",title,artist,album,id);
+        artwork.restore(id,audio(id).path());return get(id);
+    }
+    public record ArtworkSummary(int restored,int unchanged,int failed) {}
+    public ArtworkSummary restoreAllArtwork(){
+        requireAdmin();var ids=jdbc.query("SELECT id FROM songs WHERE cover_storage_name IS NULL ORDER BY id",(rs,row)->rs.getLong(1));
+        int restored=0,unchanged=0,failed=0;
+        for(long id:ids){try{if(artwork.restore(id,audio(id).path()))restored++;else unchanged++;}catch(RuntimeException ex){failed++;}}
+        return new ArtworkSummary(restored,unchanged,failed);
     }
 
     public List<Double> vector(long id) {

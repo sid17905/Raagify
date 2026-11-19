@@ -1,0 +1,25 @@
+
+> raagify-frontend@1.0.0 test
+> vitest run
+
+
+ RUN  v3.1.4 E:/Raagify/frontend
+
+ ✓ src/useResource.test.jsx (1 test) 181ms
+ ✓ src/AuthContext.test.jsx (3 tests) 310ms
+ ✓ src/BatchUpload.test.jsx (5 tests) 1861ms
+   ✓ prefills filename titles/durations and only enables uploads with required metadata  661ms
+   ✓ keeps successes and retries only a server-rejected track  567ms
+ ✓ src/PlayerContext.test.jsx (1 test) 11ms
+stderr | src/AnalyticsDashboard.test.jsx > shows exact dates/counts when focusing a listening-chart point
+Encountered two children with the same key, `0`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.
+Encountered two children with the same key, `0`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.
+
+ ✓ src/AnalyticsDashboard.test.jsx (3 tests) 647ms
+   ✓ shows exact dates/counts when focusing a listening-chart point  629ms
+
+ Test Files  5 passed (5)
+      Tests  13 passed (13)
+   Start at  12:24:00
+   Duration  30.06s (transform 4.10s, setup 42.23s, collect 11.41s, tests 3.01s, environment 73.94s, prepare 5.52s)
+

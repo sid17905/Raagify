@@ -15,7 +15,19 @@ vi.mock("./api", () => ({
 }));
 vi.mock("./batchFiles", async () => {
   const actual = await vi.importActual("./batchFiles");
-  return { ...actual, readDuration: vi.fn().mockResolvedValue("3") };
+  return {
+    ...actual,
+    readTrackMetadata: vi
+      .fn()
+      .mockResolvedValue({
+        durationSeconds: "3",
+        title: "",
+        artist: "",
+        album: "",
+        genre: "",
+        cover: null,
+      }),
+  };
 });
 
 beforeEach(() => vi.clearAllMocks());
@@ -61,7 +73,7 @@ it("keeps successes and retries only a server-rejected track", async () => {
   const changed = vi.fn();
   write
     .mockResolvedValueOnce({
-      data: { id: 1, featureStatus: "READY", genreSource: "PLACEHOLDER" },
+      data: { id: 1, featureStatus: "READY", genreSource: "UNCLASSIFIED" },
     })
     .mockRejectedValueOnce({
       response: { status: 400, data: { message: "Invalid cover" } },
@@ -148,8 +160,15 @@ it("rejects unsupported file types and skips files already selected", async () =
   expect(screen.getAllByRole("region", { name: /Track \d/ })).toHaveLength(1);
   expect(screen.getByText(/already-selected file/)).toBeInTheDocument();
   fireEvent.change(picker, {
-    target: { files: Array.from({ length: 26 }, (_, index) => new File(["RIFF"], `track-${index}.wav`)) },
+    target: {
+      files: Array.from(
+        { length: 26 },
+        (_, index) => new File(["RIFF"], `track-${index}.wav`),
+      ),
+    },
   });
-  expect(screen.getByText("Choose at most 25 files per batch.")).toBeInTheDocument();
+  expect(
+    screen.getByText("Choose at most 25 files per batch."),
+  ).toBeInTheDocument();
   expect(screen.getAllByRole("region", { name: /Track \d/ })).toHaveLength(1);
 });

@@ -1,0 +1,22 @@
+
+> raagify-frontend@1.0.0 test
+> vitest run
+
+
+ RUN  v3.1.4 E:/Raagify/frontend
+
+ ✓ src/useResource.test.jsx (1 test) 294ms
+ ✓ src/AuthContext.test.jsx (3 tests) 383ms
+ ✓ src/PlayerContext.test.jsx (1 test) 11ms
+ ✓ src/BatchUpload.test.jsx (5 tests) 2117ms
+   ✓ prefills filename titles/durations and only enables uploads with required metadata  837ms
+   ✓ keeps successes and retries only a server-rejected track  575ms
+   ✓ stops a batch after permission denial and blocks closing during an upload  324ms
+ ✓ src/AnalyticsDashboard.test.jsx (3 tests) 742ms
+   ✓ shows exact dates/counts when focusing a listening-chart point  720ms
+
+ Test Files  5 passed (5)
+      Tests  13 passed (13)
+   Start at  12:30:26
+   Duration  19.60s (transform 3.25s, setup 20.14s, collect 10.29s, tests 3.55s, environment 44.70s, prepare 6.68s)
+

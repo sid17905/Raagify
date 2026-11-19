@@ -1,3 +1,4 @@
+import { write } from "./api";
 export const MAX_BATCH_FILES = 25;
 export const AUDIO_MAX_BYTES = 25 * 1024 * 1024;
 export const COVER_MAX_BYTES = 5 * 1024 * 1024;
@@ -6,6 +7,32 @@ export const AUDIO_ACCEPT =
 export const COVER_ACCEPT = "image/png,image/jpeg,image/webp";
 
 const audioTypes = { wav: "audio/wav", mp3: "audio/mpeg", ogg: "audio/ogg" };
+export function cleanMusicText(value, title = false) {
+  let text = String(value || "")
+    .replace(
+      /https?:\/\/(?:www\.)?(?:spotidost|spotidown|spotimate|spotiflyer|spotdown)\.[a-z]+\S*/gi,
+      "",
+    )
+    .replace(
+      /\b(?:www\.)?(?:spotidost|spotidown|spotimate|spotiflyer|spotdown)(?:\.[a-z]+)?\b/gi,
+      "",
+    );
+  if (title) text = text.replace(/^\s*\d{1,3}_+\s*/, "");
+  return text
+    .replace(/[\[({]\s*[\])}]/g, "")
+    .replace(/\s+/g, " ")
+    .replace(/^[\s_|-]+|[\s_|-]+$/g, "")
+    .slice(0, 160);
+}
+export function titleFromFilename(name) {
+  return cleanMusicText(
+    name
+      .replace(/\.[^.]+$/, "")
+      .replace(/^\d{1,3}_+/, "")
+      .replace(/_/g, " "),
+    true,
+  );
+}
 
 export function audioType(file) {
   return audioTypes[file.name.split(".").pop().toLowerCase()] || "";
@@ -23,10 +50,7 @@ export function newTrack(file) {
     id: crypto.randomUUID(),
     file,
     cover: null,
-    title: file.name
-      .replace(/\.[^.]+$/, "")
-      .replace(/_/g, " ")
-      .slice(0, 160),
+    title: titleFromFilename(file.name),
     artist: "",
     album: "",
     genre: "",
@@ -85,6 +109,62 @@ export function uploadBody(track) {
   return form;
 }
 
+export async function readTrackMetadata(file, signal) {
+  let metadata = {};
+  try {
+    const form = new FormData();
+    form.append("file", new File([file], file.name, { type: audioType(file) }));
+    metadata =
+      (
+        await write({
+          method: "post",
+          url: "/admin/songs/metadata",
+          data: form,
+          signal,
+        })
+      ).data || {};
+  } catch {
+    /* Native duration/filename remain usable if tag extraction is unavailable. */
+  }
+  const duration =
+    metadata.durationSeconds > 0
+      ? String(metadata.durationSeconds)
+      : await readDuration(file, signal);
+  let cover = null;
+  if (
+    metadata.coverBase64 &&
+    metadata.coverBase64.length <= ((COVER_MAX_BYTES + 2) * 4) / 3 + 4 &&
+    COVER_ACCEPT.split(",").includes(metadata.coverContentType)
+  ) {
+    try {
+      const binary = atob(metadata.coverBase64);
+      if (binary.length <= COVER_MAX_BYTES) {
+        const bytes = Uint8Array.from(binary, (char) => char.charCodeAt(0));
+        const ext = {
+          "image/png": "png",
+          "image/jpeg": "jpg",
+          "image/webp": "webp",
+        }[metadata.coverContentType];
+        cover = new File([bytes], `embedded-cover.${ext}`, {
+          type: metadata.coverContentType,
+        });
+      }
+    } catch {
+      /* Invalid embedded artwork is ignored. */
+    }
+  }
+  return {
+    title: cleanMusicText(metadata.title, true) || titleFromFilename(file.name),
+    artist: cleanMusicText(metadata.artist).replace(/\s+-\s+Topic$/i, ""),
+    album: cleanMusicText(metadata.album),
+    genre:
+      metadata.genre && !/^(music|unknown|unclassified)$/i.test(metadata.genre)
+        ? cleanMusicText(metadata.genre).slice(0, 80)
+        : "",
+    durationSeconds: duration,
+    cover,
+  };
+}
 export function readDuration(file, signal) {
   return new Promise((resolve) => {
     if (signal?.aborted) {

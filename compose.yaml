@@ -24,9 +24,9 @@ services:
       ADMIN_NAME: ${ADMIN_NAME:-Raagify Admin}
       AUDIO_STORAGE_PATH: /data/audio
       COVER_STORAGE_PATH: /data/covers
-      ML_BASE_URL: http://ml:8000
-      ML_CONNECT_TIMEOUT_MS: ${ML_CONNECT_TIMEOUT_MS:-750}
-      ML_READ_TIMEOUT_MS: ${ML_READ_TIMEOUT_MS:-15000}
+      MEDIA_SERVICE_URL: http://media:8000
+      MEDIA_CONNECT_TIMEOUT_MS: ${MEDIA_CONNECT_TIMEOUT_MS:-750}
+      MEDIA_READ_TIMEOUT_MS: ${MEDIA_READ_TIMEOUT_MS:-15000}
     depends_on:
       db: {condition: service_healthy}
     volumes: [media-data:/data]
@@ -35,12 +35,10 @@ services:
     build: ./frontend
     ports: ["5173:80"]
     depends_on: [backend]
-  ml:
-    build: ./ml-service
+  media:
+    build: ./media-service
     environment:
-      GENRE_MODEL_PATH: ${COMPOSE_GENRE_MODEL_PATH:-}
       AUDIO_MAX_BYTES: ${AUDIO_MAX_BYTES:-26214400}
-    volumes: [./ml-service/models:/models:ro]
     ports: ["127.0.0.1:8000:8000"]
 volumes:
   mysql-data:

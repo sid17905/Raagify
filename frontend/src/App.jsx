@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Link,
   NavLink,
@@ -14,6 +14,8 @@ import { write, message } from "./api";
 import useResource from "./useResource";
 import { Cover, Modal, Notice, SongList, State } from "./components";
 import BatchUpload from "./BatchUpload";
+import AnalyticsDashboard from "./AnalyticsDashboard";
+import { readTrackMetadata, audioType } from "./batchFiles";
 
 export default function App() {
   return (
@@ -200,9 +202,14 @@ function Shell() {
             <span aria-hidden="true">◷</span>Recently played
           </NavLink>
           {user.role === "ADMIN" && (
-            <NavLink to="/admin">
-              <span aria-hidden="true">↑</span>Manage music
-            </NavLink>
+            <>
+              <NavLink to="/admin/analytics">
+                <span aria-hidden="true">▥</span>Analytics
+              </NavLink>
+              <NavLink to="/admin" end>
+                <span aria-hidden="true">↑</span>Manage music
+              </NavLink>
+            </>
           )}
         </nav>
         <div className="sidebar-note">
@@ -254,6 +261,16 @@ function Shell() {
               path="/admin"
               element={
                 user.role === "ADMIN" ? <Admin /> : <Navigate to="/" replace />
+              }
+            />
+            <Route
+              path="/admin/analytics"
+              element={
+                user.role === "ADMIN" ? (
+                  <AnalyticsDashboard />
+                ) : (
+                  <Navigate to="/" replace />
+                )
               }
             />
             <Route path="*" element={<Navigate to="/" replace />} />
@@ -709,6 +726,7 @@ function Admin() {
     [editing, setEditing] = useState(null),
     [deleting, setDeleting] = useState(null),
     [error, setError] = useState(""),
+    [artworkMessage, setArtworkMessage] = useState(""),
     [busy, setBusy] = useState(false);
   async function remove() {
     setBusy(true);
@@ -738,6 +756,25 @@ function Admin() {
       setBusy(false);
     }
   }
+  async function restoreCovers() {
+    setBusy(true);
+    setError("");
+    setArtworkMessage("");
+    try {
+      const { data } = await write({
+        method: "post",
+        url: "/admin/songs/artwork/restore",
+      });
+      setArtworkMessage(
+        `${data.restored} covers restored · ${data.unchanged} unchanged · ${data.failed} failed`,
+      );
+      r.refresh();
+    } catch (error) {
+      setError(message(error));
+    } finally {
+      setBusy(false);
+    }
+  }
   return (
     <>
       <Heading
@@ -747,6 +784,9 @@ function Admin() {
         action={
           <div className="button-group">
             <button onClick={() => setBatching(true)}>Batch upload</button>
+            <button disabled={busy} onClick={restoreCovers}>
+              Restore embedded covers
+            </button>
             <button className="primary" onClick={() => setUploading(true)}>
               ↑ Upload a song
             </button>
@@ -754,6 +794,11 @@ function Admin() {
         }
       />
       <Notice error={error} />
+      {artworkMessage && (
+        <p className="artwork-result" role="status">
+          {artworkMessage}
+        </p>
+      )}
       <State
         resource={r}
         empty={!r.data?.content.length}
@@ -775,9 +820,7 @@ function Admin() {
               >
                 {song.featureStatus === "PENDING"
                   ? "Features pending — genre fallback"
-                  : song.genreSource === "PLACEHOLDER"
-                    ? "Features ready · Genre prediction: placeholder"
-                    : `Features ready · Genre: ${song.genreSource === "ADMIN_OVERRIDE" ? "admin override" : "model"}`}
+                  : `Features ready · Genre: ${song.genreSource === "ADMIN_OVERRIDE" ? "curated" : song.genreSource === "METADATA" ? "embedded" : "unclassified"}`}
               </small>
             </div>
             <div className="button-group">
@@ -787,6 +830,28 @@ function Admin() {
                 </button>
               )}
               <button onClick={() => setEditing(song)}>Edit</button>
+              {!song.coverUrl && (
+                <button
+                  disabled={busy}
+                  onClick={async () => {
+                    setBusy(true);
+                    setError("");
+                    try {
+                      await write({
+                        method: "post",
+                        url: `/admin/songs/${song.id}/artwork/restore`,
+                      });
+                      r.refresh();
+                    } catch (error) {
+                      setError(message(error));
+                    } finally {
+                      setBusy(false);
+                    }
+                  }}
+                >
+                  Restore cover
+                </button>
+              )}
               <button onClick={() => setDeleting(song)}>Delete</button>
             </div>
           </div>
@@ -849,12 +914,58 @@ function Admin() {
 }
 function SongForm({ song, onClose, onSaved }) {
   const [busy, setBusy] = useState(false),
-    [error, setError] = useState("");
+    [error, setError] = useState(""),
+    [detecting, setDetecting] = useState(false),
+    [embeddedCover, setEmbeddedCover] = useState(null);
+  const formRef = useRef(null),
+    metadataAbort = useRef(null),
+    autofilled = useRef({});
+  useEffect(() => () => metadataAbort.current?.abort(), []);
+  async function detectMetadata(event) {
+    const file = event.target.files?.[0];
+    metadataAbort.current?.abort();
+    setEmbeddedCover(null);
+    if (!file) return;
+    const controller = new AbortController();
+    metadataAbort.current = controller;
+    setDetecting(true);
+    const metadata = await readTrackMetadata(file, controller.signal);
+    if (controller.signal.aborted || !formRef.current) return;
+    for (const key of [
+      "title",
+      "artist",
+      "album",
+      "genre",
+      "durationSeconds",
+    ]) {
+      const input = formRef.current.elements.namedItem(key);
+      if (
+        input &&
+        metadata[key] &&
+        (!input.value || input.value === autofilled.current[key])
+      ) {
+        input.value = metadata[key];
+        autofilled.current[key] = metadata[key];
+      }
+    }
+    setEmbeddedCover(metadata.cover);
+    setDetecting(false);
+  }
   async function submit(e) {
     e.preventDefault();
     setBusy(true);
     setError("");
     const form = new FormData(e.currentTarget);
+    if (!song) {
+      const file = form.get("audio");
+      if (file?.size)
+        form.set(
+          "audio",
+          new File([file], file.name, { type: audioType(file) || file.type }),
+        );
+      if (!form.get("cover")?.size && embeddedCover)
+        form.set("cover", embeddedCover);
+    }
     try {
       await write({
         method: song ? "put" : "post",
@@ -878,7 +989,7 @@ function SongForm({ song, onClose, onSaved }) {
       title={song ? "Edit song" : "Upload a song"}
       onClose={() => !busy && onClose()}
     >
-      <form onSubmit={submit}>
+      <form ref={formRef} onSubmit={submit}>
         <label>
           Title
           <input
@@ -919,7 +1030,7 @@ function SongForm({ song, onClose, onSaved }) {
           </label>
         </div>
         <label>
-          Genre override (optional)
+          Genre tags (optional)
           <input
             name="genre"
             maxLength={80}
@@ -927,7 +1038,7 @@ function SongForm({ song, onClose, onSaved }) {
             placeholder={
               song
                 ? "Leave blank for no genre"
-                : "Leave blank to use the prediction"
+                : "Leave blank to use embedded genre tags"
             }
           />
         </label>
@@ -940,6 +1051,7 @@ function SongForm({ song, onClose, onSaved }) {
                 type="file"
                 accept="audio/wav,audio/x-wav,audio/mpeg,audio/ogg"
                 required
+                onChange={detectMetadata}
               />
             </label>
             <label>
@@ -951,19 +1063,26 @@ function SongForm({ song, onClose, onSaved }) {
               />
             </label>
             <p className="form-help">
-              Audio features are extracted on upload. Without a supplied genre
-              model, prediction is labeled as a placeholder. If the service is
+              {detecting
+                ? "Reading embedded song details… "
+                : embeddedCover
+                  ? "Embedded cover found. A separate cover overrides it. "
+                  : ""}
+              Audio features and embedded tags are extracted on upload. Embedded
+              artwork is used when no separate cover is chosen. If analysis is
               unavailable, the song is saved with features pending.
             </p>
           </>
         )}
         <Notice error={error} />
-        <button className="primary" disabled={busy}>
-          {busy
-            ? "Saving and analyzing…"
-            : song
-              ? "Save changes"
-              : "Upload song"}
+        <button className="primary" disabled={busy || detecting}>
+          {detecting
+            ? "Reading song details…"
+            : busy
+              ? "Saving and analyzing…"
+              : song
+                ? "Save changes"
+                : "Upload song"}
         </button>
       </form>
     </Modal>

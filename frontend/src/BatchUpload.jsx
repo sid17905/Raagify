@@ -10,7 +10,8 @@ import {
   missingDetails,
   newTrack,
   readyToUpload,
-  readDuration,
+  readTrackMetadata,
+  titleFromFilename,
   uploadBody,
 } from "./batchFiles";
 
@@ -53,8 +54,8 @@ export default function BatchUpload({ onClose, onChanged }) {
     ) {
       const { id, file } = metadataQueue.current.shift();
       readers.current++;
-      readDuration(file, metadataController.current.signal)
-        .then((duration) => {
+      readTrackMetadata(file, metadataController.current.signal)
+        .then((metadata) => {
           if (alive.current)
             setTracks((current) =>
               current.map((track) =>
@@ -62,8 +63,18 @@ export default function BatchUpload({ onClose, onChanged }) {
                   ? {
                       ...track,
                       reading: false,
-                      durationSeconds: track.durationSeconds || duration,
-                      durationWarning: duration
+                      title:
+                        track.title === titleFromFilename(file.name) &&
+                        metadata.title
+                          ? metadata.title
+                          : track.title,
+                      artist: track.artist || metadata.artist,
+                      album: track.album || metadata.album,
+                      genre: track.genre || metadata.genre,
+                      cover: track.cover || metadata.cover,
+                      durationSeconds:
+                        track.durationSeconds || metadata.durationSeconds,
+                      durationWarning: metadata.durationSeconds
                         ? ""
                         : "Duration could not be read. Enter it manually.",
                     }
@@ -241,8 +252,8 @@ export default function BatchUpload({ onClose, onChanged }) {
     >
       <p className="muted">
         Choose up to 25 audio files, review the details, then upload ready
-        tracks. Titles come from filenames; durations are read automatically
-        when supported.
+        tracks. Embedded title, artist, album and artwork are used when
+        available. Filename counters and download-site markers are removed.
       </p>
       <label className="batch-picker">
         Select audio files · WAV, MP3, OGG · up to 25 MiB each
@@ -342,7 +353,7 @@ export default function BatchUpload({ onClose, onChanged }) {
                       ["title", "Title", 160],
                       ["artist", "Artist", 160],
                       ["album", "Album", 160],
-                      ["genre", "Genre override", 80],
+                      ["genre", "Genre tags", 80],
                     ].map(([key, label, max]) => (
                       <label key={key}>
                         {label}
@@ -405,9 +416,7 @@ export default function BatchUpload({ onClose, onChanged }) {
                       Saved to Manage music. Use Edit there to change details.{" "}
                       {track.song?.featureStatus === "PENDING"
                         ? "Audio features are pending; genre fallback is active."
-                        : track.song?.genreSource === "PLACEHOLDER"
-                          ? "Audio features ready; genre prediction is a placeholder."
-                          : "Audio features ready."}
+                        : "Audio features ready."}
                     </p>
                   ) : (
                     <>
@@ -465,7 +474,7 @@ export default function BatchUpload({ onClose, onChanged }) {
                   ? "Keep this tab open while files upload."
                   : finished
                     ? "Saved tracks will not be uploaded again. Fix any remaining tracks and retry."
-                    : "Blank genre uses the current prediction. Files stay queued in this tab until saved."}
+                    : "Blank genre uses embedded tags when available. Files stay queued in this tab until saved."}
               </p>
               <small>
                 Required: title, artist, duration. Album, genre and cover are
