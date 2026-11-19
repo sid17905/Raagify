@@ -1,0 +1,116 @@
+[
+  {
+    "classification": "Observed",
+    "check": "browser form login",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "session restored on browser reload",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "native audio decodes and playback advances",
+    "passed": true,
+    "details": "{'duration': 15, 'currentTime': 0.346787}"
+  },
+  {
+    "classification": "Observed",
+    "check": "browser seek and resume",
+    "passed": true,
+    "details": "10.213288"
+  },
+  {
+    "classification": "Observed",
+    "check": "native authenticated Range 206",
+    "passed": true,
+    "details": "[{'url': 'http://127.0.0.1:15173/api/songs/17/stream', 'status': 206, 'range': 'bytes 0-661543/661544'}]"
+  },
+  {
+    "classification": "Observed",
+    "check": "volume control",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "next and previous controls",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "browser likes and Liked Songs page",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "browser playlist create",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "browser playlist add",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "browser playlist rename",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "browser playlist remove",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "browser playlist delete",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "mobile layout and sign-out access",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "browser logout",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "admin audio and cover upload in browser",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "admin genre override in browser",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "admin delete in browser",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "no browser page errors",
+    "passed": true,
+    "details": ""
+  }
+]

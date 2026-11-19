@@ -1,0 +1,16 @@
+
+  VITE v6.3.5  ready in 876 ms
+
+  ➜  Local:   http://127.0.0.1:15173/
+9:48:16 AM [vite] (client) hmr update /src/App.jsx
+9:49:47 AM [vite] (client) hmr update /src/components.jsx
+9:53:48 AM [vite] (client) hmr update /src/App.jsx, /src/components.jsx, /src/AuthContext.jsx, /src/PlayerContext.jsx
+9:53:49 AM [vite] (client) hmr update /src/App.jsx
+9:53:49 AM [vite] (client) hmr update /src/AuthContext.jsx
+9:53:49 AM [vite] (client) hmr update /src/components.jsx
+9:53:49 AM [vite] (client) page reload src/main.jsx
+9:53:49 AM [vite] (client) hmr update /src/PlayerContext.jsx
+9:53:49 AM [vite] (client) hmr update /src/styles.css
+9:53:49 AM [vite] (client) hmr update /src/App.jsx, /src/components.jsx
+9:53:49 AM [vite] vite.config.js changed, restarting server...
+9:53:49 AM [vite] server restarted.

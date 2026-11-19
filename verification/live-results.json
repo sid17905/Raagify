@@ -1,0 +1,356 @@
+[
+  {
+    "classification": "Observed",
+    "check": "session login",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "registration forces LISTENER and safe DTO",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "session login",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "registration forces LISTENER and safe DTO",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "session login",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "anonymous catalog denial",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "missing CSRF denied",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "listener upload role denial",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "invalid request 400",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "audio and cover upload",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "actual Python extraction stored READY",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "genre prediction clearly placeholder",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "authenticated cover",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "audio and cover upload",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "actual Python extraction stored READY",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "authenticated cover",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "audio and cover upload",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "actual Python extraction stored READY",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "authenticated cover",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "wrong upload signature",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "wrong cover signature",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "upload size limit",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "paginated search by title",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "paginated search by artist",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "paginated search by genre",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "duplicate like 409",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "likes scoped to session",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "other user cannot unlike",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "playlist create",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "another owner's playlist denial GET /playlists/7",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "another owner's playlist denial PUT /playlists/7",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "another owner's playlist denial DELETE /playlists/7",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "another owner's playlist denial POST /playlists/7/songs/18",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "another owner's playlist denial PUT /playlists/7/songs/order",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "playlist add",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "duplicate playlist entry 409",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "playlist rename",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "playlist reorder",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "invalid reorder 400",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "playlist remove",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "history write",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "history session scope",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "recommendations exclude liked",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "new listener popular fallback",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "similar songs excludes source and limits ten",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "exact HTTP Range bytes=0-31",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "exact HTTP Range bytes=-16",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "exact HTTP Range bytes=32-",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "invalid range 416",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "ML service down upload succeeds pending",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "pending similar falls back to genre",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "ML read timeout upload succeeds pending",
+    "passed": true,
+    "details": "elapsed=5.20s"
+  },
+  {
+    "classification": "Observed",
+    "check": "pending features retry preserves admin genre",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "session login",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "persistence after backend and MySQL restart",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "real MySQL Flyway V1",
+    "passed": true,
+    "details": "(('1', 1),)"
+  },
+  {
+    "classification": "Observed",
+    "check": "playlist delete",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "unlike",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "logout invalidates session",
+    "passed": true,
+    "details": ""
+  }
+]

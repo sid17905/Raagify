@@ -1,0 +1,28 @@
+INFO:     Started server process [20964]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:18000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:49989 - "POST /analyze-file HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49991 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49989 - "POST /analyze-file HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49989 - "POST /analyze-file HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50061 - "POST /analyze-file HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50061 - "POST /analyze-file HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63655 - "POST /analyze-file HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63655 - "POST /analyze-file HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63655 - "POST /analyze-file HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63655 - "POST /analyze-file HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63655 - "POST /analyze-file HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63655 - "POST /analyze-file HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63655 - "POST /analyze-file HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63655 - "POST /analyze-file HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53864 - "POST /analyze-file HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53864 - "POST /analyze-file HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53864 - "POST /analyze-file HTTP/1.1" 200 OK
+INFO:     Started server process [3156]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:18000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:53881 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53885 - "POST /analyze-file HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57733 - "POST /analyze-file HTTP/1.1" 200 OK

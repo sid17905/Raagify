@@ -1,0 +1,157 @@
+
+> raagify-frontend@1.0.0 test
+> vitest run
+
+
+ RUN  v3.1.4 E:/Raagify/frontend
+
+ ✓ src/PlayerContext.test.jsx (1 test) 14ms
+ ✓ src/useResource.test.jsx (1 test) 170ms
+ ❯ src/AuthContext.test.jsx (3 tests | 1 failed) 251ms
+   ✓ session lifecycle (isolated client tests) > waits for session restoration before showing identity 138ms
+   ✓ session lifecycle (isolated client tests) > shows connection failures distinctly from signed-out state 43ms
+   × session lifecycle (isolated client tests) > refreshes CSRF after form login and clears identity on logout 65ms
+     → Found multiple elements with the text: Login
+
+Here are the matching elements:
+
+Ignored nodes: comments, script, style
+[36m<button>[39m
+  [0mLogin[0m
+[36m</button>[39m
+
+Ignored nodes: comments, script, style
+[36m<button>[39m
+  [0mLogin[0m
+[36m</button>[39m
+
+Ignored nodes: comments, script, style
+[36m<button>[39m
+  [0mLogin[0m
+[36m</button>[39m
+
+(If this is intentional, then use the `*AllBy*` variant of the query (like `queryAllByText`, `getAllByText`, or `findAllByText`)).
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<span>[39m
+      [0mAsha[0m
+    [36m</span>[39m
+    [36m<span />[39m
+    [36m<button>[39m
+      [0mLogin[0m
+    [36m</button>[39m
+    [36m<button>[39m
+      [0mLogout[0m
+    [36m</button>[39m
+  [36m</div>[39m
+  [36m<div>[39m
+    [36m<span>[39m
+      [0mGuest[0m
+    [36m</span>[39m
+    [36m<span>[39m
+      [0mUnable to connect to Raagify. Please retry.[0m
+    [36m</span>[39m
+    [36m<button>[39m
+      [0mLogin[0m
+    [36m</button>[39m
+    [36m<button>[39m
+      [0mLogout[0m
+    [36m</button>[39m
+  [36m</div>[39m
+  [36m<div>[39m
+    [36m<span>[39m
+      [0mGuest[0m
+    [36m</span>[39m
+    [36m<span />[39m
+    [36m<button>[39m
+      [0mLogin[0m
+    [36m</button>[39m
+    [36m<button>[39m
+      [0mLogout[0m
+    [36m</button>[39m
+  [36m</div>[39m
+[36m</body>[39m
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/AuthContext.test.jsx > session lifecycle (isolated client tests) > refreshes CSRF after form login and clears identity on logout
+TestingLibraryElementError: Found multiple elements with the text: Login
+
+Here are the matching elements:
+
+Ignored nodes: comments, script, style
+[36m<button>[39m
+  [0mLogin[0m
+[36m</button>[39m
+
+Ignored nodes: comments, script, style
+[36m<button>[39m
+  [0mLogin[0m
+[36m</button>[39m
+
+Ignored nodes: comments, script, style
+[36m<button>[39m
+  [0mLogin[0m
+[36m</button>[39m
+
+(If this is intentional, then use the `*AllBy*` variant of the query (like `queryAllByText`, `getAllByText`, or `findAllByText`)).
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<span>[39m
+      [0mAsha[0m
+    [36m</span>[39m
+    [36m<span />[39m
+    [36m<button>[39m
+      [0mLogin[0m
+    [36m</button>[39m
+    [36m<button>[39m
+      [0mLogout[0m
+    [36m</button>[39m
+  [36m</div>[39m
+  [36m<div>[39m
+    [36m<span>[39m
+      [0mGuest[0m
+    [36m</span>[39m
+    [36m<span>[39m
+      [0mUnable to connect to Raagify. Please retry.[0m
+    [36m</span>[39m
+    [36m<button>[39m
+      [0mLogin[0m
+    [36m</button>[39m
+    [36m<button>[39m
+      [0mLogout[0m
+    [36m</button>[39m
+  [36m</div>[39m
+  [36m<div>[39m
+    [36m<span>[39m
+      [0mGuest[0m
+    [36m</span>[39m
+    [36m<span />[39m
+    [36m<button>[39m
+      [0mLogin[0m
+    [36m</button>[39m
+    [36m<button>[39m
+      [0mLogout[0m
+    [36m</button>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ getElementError node_modules/@testing-library/dom/dist/query-helpers.js:20:35
+ ❯ getMultipleElementsFoundError node_modules/@testing-library/dom/dist/query-helpers.js:23:10
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:55:13
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/AuthContext.test.jsx:11:284
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  1 failed | 4 passed (5)
+   Start at  09:39:52
+   Duration  16.95s (transform 2.95s, setup 6.83s, collect 9.03s, tests 435ms, environment 24.23s, prepare 6.18s)
+

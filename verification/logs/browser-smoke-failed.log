@@ -1,0 +1,248 @@
+Traceback (most recent call last):
+  File "E:\Raagify\verification\browser_smoke.py", line 79, in <module>
+    try:main()
+        ~~~~^^
+  File "E:\Raagify\verification\browser_smoke.py", line 26, in main
+    login(fixture["email"],c["listenerPassword"])
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Raagify\verification\browser_smoke.py", line 25, in login
+    expect(page.get_by_role("link",name="Discover",exact=True)).to_be_visible(timeout=30000)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Roaming\Python\Python314\site-packages\playwright\sync_api\_generated.py", line 23501, in to_be_visible
+    self._sync(
+    ~~~~~~~~~~^
+        self._impl_obj.to_be_visible(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+            visible=visible, timeout=to_milliseconds(timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        )
+        ^
+    )
+    ^
+  File "C:\Users\user\AppData\Roaming\Python\Python314\site-packages\playwright\_impl\_sync_base.py", line 115, in _sync
+    return task.result()
+           ~~~~~~~~~~~^^
+  File "C:\Users\user\AppData\Roaming\Python\Python314\site-packages\playwright\_impl\_assertions.py", line 852, in to_be_visible
+    await self._expect_impl(
+    ...<5 lines>...
+    )
+  File "C:\Users\user\AppData\Roaming\Python\Python314\site-packages\playwright\_impl\_assertions.py", line 128, in _expect_impl
+    _record_soft_or_raise(
+    ~~~~~~~~~~~~~~~~~~~~~^
+        AssertionError(
+        ^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        self._is_soft,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\user\AppData\Roaming\Python\Python314\site-packages\playwright\_impl\_assertions.py", line 60, in _record_soft_or_raise
+    raise error
+AssertionError: Locator expected to be visible
+Actual value: None
+Error: element(s) not found 
+Call log:
+  - Expect "to_be_visible" get_by_role("link", name="Discover", exact=True) with timeout 30000ms
+  - waiting for get_by_role("link", name="Discover", exact=True)
+
+Aria snapshot:
+- complementary:
+  - link "r raagify .":
+    - /url: /
+  - text: YOUR DAILY SOUNDTRACK
+  - navigation:
+    - link "\u25c9 Discover":
+      - /url: /
+    - link "\u2315 Browse & search":
+      - /url: /browse
+    - text: YOUR COLLECTION
+    - link "\u2661 Liked songs":
+      - /url: /likes
+    - link "\u25a4 Your playlists":
+      - /url: /playlists
+    - link "\u25f7 Recently played":
+      - /url: /recent
+  - text: MADE FOR YOUR EARS
+  - paragraph: Stay curious. Keep listening.
+  - text: \u2581 \u2583 \u2586 \u2582 \u2585 \u2587 \u2583 \u2581 V
+  - strong: Verification Listener
+  - text: Listener
+  - button "Sign out": \u2197
+- main:
+  - text: GOOD MUSIC FINDS A WAY.
+  - link "\u2315 Find your next favorite":
+    - /url: /browse
+  - text: YOUR NEXT FAVORITE IS OUT THERE
+  - heading "Let the music take you somewhere." [level=1]
+  - paragraph: A fresh mix of familiar feelings and new discoveries.
+  - button "\u25b6 Play your mix"
+  - text: VOL. 01 / DAILY DISCOVERIES CURATED FOR VERIFICATION LISTENER
+  - heading "Made for your mood" [level=1]
+  - paragraph: Recommendations shaped by your likes and listening. Start fresh with popular tracks.
+  - link "Explore all music \u2197":
+    - /url: /browse
+  - article:
+    - img "Amber skies cover"
+    - button "Play Amber skies": \u25b6
+    - link "Amber skies":
+      - /url: /songs/18
+    - paragraph: Raagify verification
+    - text: Jazz
+  - article:
+    - img "Slow morning cover"
+    - button "Play Slow morning": \u25b6
+    - link "Slow morning":
+      - /url: /songs/19
+    - paragraph: Raagify verification
+    - text: Jazz
+  - article:
+    - img "Pending jazz cover"
+    - button "Play Pending jazz": \u25b6
+    - link "Pending jazz":
+      - /url: /songs/20
+    - paragraph: Raagify verification
+    - text: Jazz
+  - article:
+    - img "Midnight current cover"
+    - button "Play Midnight current": \u25b6
+    - link "Midnight current":
+      - /url: /songs/17
+    - paragraph: Raagify verification
+    - text: Unclassified
+  - article:
+    - button "Play Test song c3c3c7a8-b98f-4b66-b1bf-12c885289736": \u25b6
+    - link "Test song c3c3c7a8-b98f-4b66-b1bf-12c885289736":
+      - /url: /songs/8
+    - paragraph: Test Artist
+    - text: TestGenre
+  - text: "# TRACK / ARTIST ALBUM TIME"
+  - button "Play Amber skies": "1"
+  - img "Amber skies cover"
+  - link "Amber skies":
+    - /url: /songs/18
+  - text: Raagify verification Jazz Isolated test audio 0:15
+  - button "Like Amber skies": \u2661
+  - button "Add Amber skies to playlist": \uff0b
+  - button "Play Slow morning": "2"
+  - img "Slow morning cover"
+  - link "Slow morning":
+    - /url: /songs/19
+  - text: Raagify verification Jazz Isolated test audio 0:15
+  - button "Like Slow morning": \u2661
+  - button "Add Slow morning to playlist": \uff0b
+  - button "Play Pending jazz": "3"
+  - img "Pending jazz cover"
+  - link "Pending jazz":
+    - /url: /songs/20
+  - text: Raagify verification Jazz Isolated test audio 0:15
+  - button "Like Pending jazz": \u2661
+  - button "Add Pending jazz to playlist": \uff0b
+  - button "Play Midnight current": "4"
+  - img "Midnight current cover"
+  - link "Midnight current":
+    - /url: /songs/17
+  - text: Raagify verification Unclassified Isolated test audio 0:15
+  - button "Like Midnight current": \u2661
+  - button "Add Midnight current to playlist": \uff0b
+  - button "Play Test song c3c3c7a8-b98f-4b66-b1bf-12c885289736": "5"
+  - link "Test song c3c3c7a8-b98f-4b66-b1bf-12c885289736":
+    - /url: /songs/8
+  - text: Test Artist TestGenre Single 0:03
+  - button "Like Test song c3c3c7a8-b98f-4b66-b1bf-12c885289736": \u2661
+  - button "Add Test song c3c3c7a8-b98f-4b66-b1bf-12c885289736 to playlist": \uff0b
+  - button "Play Test song e698a76d-0ec9-498f-ad5b-d88a7b1265c4": "6"
+  - link "Test song e698a76d-0ec9-498f-ad5b-d88a7b1265c4":
+    - /url: /songs/16
+  - text: Test Artist TestGenre Single 0:03
+  - button "Like Test song e698a76d-0ec9-498f-ad5b-d88a7b1265c4": \u2661
+  - button "Add Test song e698a76d-0ec9-498f-ad5b-d88a7b1265c4 to playlist": \uff0b
+  - button "Play Test song ce53b0cb-7f17-4019-976c-c243289d4557": "7"
+  - link "Test song ce53b0cb-7f17-4019-976c-c243289d4557":
+    - /url: /songs/4
+  - text: Test Artist TestGenre Single 0:03
+  - button "Like Test song ce53b0cb-7f17-4019-976c-c243289d4557": \u2661
+  - button "Add Test song ce53b0cb-7f17-4019-976c-c243289d4557 to playlist": \uff0b
+  - button "Play Test song dc255ba7-b1f7-4310-a21a-198bee22d153": "8"
+  - link "Test song dc255ba7-b1f7-4310-a21a-198bee22d153":
+    - /url: /songs/5
+  - text: Test Artist Unclassified Single 0:03
+  - button "Like Test song dc255ba7-b1f7-4310-a21a-198bee22d153": \u2661
+  - button "Add Test song dc255ba7-b1f7-4310-a21a-198bee22d153 to playlist": \uff0b
+  - button "Play Test song ca6853bc-e4b9-4497-9aed-92a76ce1fa25": "9"
+  - link "Test song ca6853bc-e4b9-4497-9aed-92a76ce1fa25":
+    - /url: /songs/7
+  - text: Test Artist TestGenre Single 0:03
+  - button "Like Test song ca6853bc-e4b9-4497-9aed-92a76ce1fa25": \u2661
+  - button "Add Test song ca6853bc-e4b9-4497-9aed-92a76ce1fa25 to playlist": \uff0b
+  - button "Play Test song f3752a49-c153-4b2f-97b3-cbed297b19cc": "10"
+  - link "Test song f3752a49-c153-4b2f-97b3-cbed297b19cc":
+    - /url: /songs/9
+  - text: Test Artist TestGenre Single 0:03
+  - button "Like Test song f3752a49-c153-4b2f-97b3-cbed297b19cc": \u2661
+  - button "Add Test song f3752a49-c153-4b2f-97b3-cbed297b19cc to playlist": \uff0b
+  - button "Play Test song b5d357c1-bf30-4aeb-a2b2-261ce08629c0": "11"
+  - link "Test song b5d357c1-bf30-4aeb-a2b2-261ce08629c0":
+    - /url: /songs/10
+  - text: Test Artist TestGenre Single 0:03
+  - button "Like Test song b5d357c1-bf30-4aeb-a2b2-261ce08629c0": \u2661
+  - button "Add Test song b5d357c1-bf30-4aeb-a2b2-261ce08629c0 to playlist": \uff0b
+  - button "Play Test song 46dfe9ef-fe89-4142-a8d8-130a8859833a": "12"
+  - link "Test song 46dfe9ef-fe89-4142-a8d8-130a8859833a":
+    - /url: /songs/11
+  - text: Test Artist TestGenre Single 0:03
+  - button "Like Test song 46dfe9ef-fe89-4142-a8d8-130a8859833a": \u2661
+  - button "Add Test song 46dfe9ef-fe89-4142-a8d8-130a8859833a to playlist": \uff0b
+  - button "Play Test song d4d8ab33-6a6a-4921-9b76-c26d9c9b137d": "13"
+  - link "Test song d4d8ab33-6a6a-4921-9b76-c26d9c9b137d":
+    - /url: /songs/12
+  - text: Test Artist TestGenre Single 0:03
+  - button "Like Test song d4d8ab33-6a6a-4921-9b76-c26d9c9b137d": \u2661
+  - button "Add Test song d4d8ab33-6a6a-4921-9b76-c26d9c9b137d to playlist": \uff0b
+  - button "Play Test song 30a995c3-c874-4ded-9b3d-93cdde849d00": "14"
+  - link "Test song 30a995c3-c874-4ded-9b3d-93cdde849d00":
+    - /url: /songs/13
+  - text: Test Artist Unclassified Single 0:03
+  - button "Like Test song 30a995c3-c874-4ded-9b3d-93cdde849d00": \u2661
+  - button "Add Test song 30a995c3-c874-4ded-9b3d-93cdde849d00 to playlist": \uff0b
+  - button "Play Test song 3e9054d7-68b0-4e31-9570-830259930497": "15"
+  - link "Test song 3e9054d7-68b0-4e31-9570-830259930497":
+    - /url: /songs/15
+  - text: Test Artist TestGenre Single 0:03
+  - button "Like Test song 3e9054d7-68b0-4e31-9570-830259930497": \u2661
+  - button "Add Test song 3e9054d7-68b0-4e31-9570-830259930497 to playlist": \uff0b
+  - button "Play Timed out": "16"
+  - img "Timed out cover"
+  - link "Timed out":
+    - /url: /songs/21
+  - text: Raagify verification Jazz Isolated test audio 0:15
+  - button "Like Timed out": \u2661
+  - button "Add Timed out to playlist": \uff0b
+  - button "Play Test song 4d6ef4fe-04fe-40e6-ba03-4b1ab7e6637a": "17"
+  - link "Test song 4d6ef4fe-04fe-40e6-ba03-4b1ab7e6637a":
+    - /url: /songs/1
+  - text: Test Artist TestGenre Single 0:03
+  - button "Like Test song 4d6ef4fe-04fe-40e6-ba03-4b1ab7e6637a": \u2661
+  - button "Add Test song 4d6ef4fe-04fe-40e6-ba03-4b1ab7e6637a to playlist": \uff0b
+  - button "Play Test song d18ca09c-cc2d-4928-afab-99e20acec1cf": "18"
+  - link "Test song d18ca09c-cc2d-4928-afab-99e20acec1cf":
+    - /url: /songs/2
+  - text: Test Artist TestGenre Single 0:03
+  - button "Like Test song d18ca09c-cc2d-4928-afab-99e20acec1cf": \u2661
+  - button "Add Test song d18ca09c-cc2d-4928-afab-99e20acec1cf to playlist": \uff0b
+  - button "Play Test song c72dd528-fe6d-41bb-8dd6-f5373e627ca0": "19"
+  - link "Test song c72dd528-fe6d-41bb-8dd6-f5373e627ca0":
+    - /url: /songs/3
+  - text: Test Artist TestGenre Single 0:03
+  - button "Like Test song c72dd528-fe6d-41bb-8dd6-f5373e627ca0": \u2661
+  - button "Add Test song c72dd528-fe6d-41bb-8dd6-f5373e627ca0 to playlist": \uff0b
+  - text: RAAGIFY A good day starts with a good song.
+- text: \u266b NOW PLAYING
+- strong: Find something you love
+- text: Choose a track to start listening
+- button "Previous" [disabled]: \u25c0\u25c0
+- button "Play" [disabled]: \u25b6
+- button "Next" [disabled]: \u25b6\u25b6
+- text: 0:00
+- slider "Seek" [disabled]: "0"
+- text: 0:00 Volume
+- slider "Volume": "0.8"

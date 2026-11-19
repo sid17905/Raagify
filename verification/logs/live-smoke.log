@@ -1,0 +1,60 @@
+Observed: PASS session login 
+Observed: PASS registration forces LISTENER and safe DTO 
+Observed: PASS session login 
+Observed: PASS registration forces LISTENER and safe DTO 
+Observed: PASS session login 
+Observed: PASS anonymous catalog denial 
+Observed: PASS missing CSRF denied 
+Observed: PASS listener upload role denial 
+Observed: PASS invalid request 400 
+Observed: PASS audio and cover upload 
+Observed: PASS actual Python extraction stored READY 
+Observed: PASS genre prediction clearly placeholder 
+Observed: PASS authenticated cover 
+Observed: PASS audio and cover upload 
+Observed: PASS actual Python extraction stored READY 
+Observed: PASS authenticated cover 
+Observed: PASS audio and cover upload 
+Observed: PASS actual Python extraction stored READY 
+Observed: PASS authenticated cover 
+Observed: PASS wrong upload signature 
+Observed: PASS wrong cover signature 
+Observed: PASS upload size limit 
+Observed: PASS paginated search by title 
+Observed: PASS paginated search by artist 
+Observed: PASS paginated search by genre 
+Observed: PASS duplicate like 409 
+Observed: PASS likes scoped to session 
+Observed: PASS other user cannot unlike 
+Observed: PASS playlist create 
+Observed: PASS another owner's playlist denial GET /playlists/7 
+Observed: PASS another owner's playlist denial PUT /playlists/7 
+Observed: PASS another owner's playlist denial DELETE /playlists/7 
+Observed: PASS another owner's playlist denial POST /playlists/7/songs/18 
+Observed: PASS another owner's playlist denial PUT /playlists/7/songs/order 
+Observed: PASS playlist add 
+Observed: PASS duplicate playlist entry 409 
+Observed: PASS playlist rename 
+Observed: PASS playlist reorder 
+Observed: PASS invalid reorder 400 
+Observed: PASS playlist remove 
+Observed: PASS history write 
+Observed: PASS history session scope 
+Observed: PASS recommendations exclude liked 
+Observed: PASS new listener popular fallback 
+Observed: PASS similar songs excludes source and limits ten 
+Observed: PASS exact HTTP Range bytes=0-31 
+Observed: PASS exact HTTP Range bytes=-16 
+Observed: PASS exact HTTP Range bytes=32- 
+Observed: PASS invalid range 416 
+Observed: PASS ML service down upload succeeds pending 
+Observed: PASS pending similar falls back to genre 
+Observed: PASS ML read timeout upload succeeds pending elapsed=5.20s
+Observed: PASS pending features retry preserves admin genre 
+Observed: isolated MySQL 8.4 on 33317; schema raagify_test
+Observed: PASS session login 
+Observed: PASS persistence after backend and MySQL restart 
+Observed: PASS real MySQL Flyway V1 (('1', 1),)
+Observed: PASS playlist delete 
+Observed: PASS unlike 
+Observed: PASS logout invalidates session 

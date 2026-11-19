@@ -1,0 +1,47 @@
+name: raagify
+services:
+  db:
+    image: mysql:8.4.0
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-raagify}
+      MYSQL_USER: ${MYSQL_USER:-raagify}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?Set MYSQL_PASSWORD in .env}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Set MYSQL_ROOT_PASSWORD in .env}
+    volumes: [mysql-data:/var/lib/mysql]
+    healthcheck:
+      test: [CMD-SHELL, 'mysqladmin ping -h localhost --silent']
+      interval: 5s
+      timeout: 5s
+      retries: 30
+  backend:
+    build: ./backend
+    environment:
+      DB_URL: jdbc:mysql://db:3306/${MYSQL_DATABASE:-raagify}?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      DB_USER: ${MYSQL_USER:-raagify}
+      DB_PASSWORD: ${MYSQL_PASSWORD}
+      ADMIN_EMAIL: ${ADMIN_EMAIL:-}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-}
+      ADMIN_NAME: ${ADMIN_NAME:-Raagify Admin}
+      AUDIO_STORAGE_PATH: /data/audio
+      COVER_STORAGE_PATH: /data/covers
+      ML_BASE_URL: http://ml:8000
+      ML_CONNECT_TIMEOUT_MS: ${ML_CONNECT_TIMEOUT_MS:-750}
+      ML_READ_TIMEOUT_MS: ${ML_READ_TIMEOUT_MS:-15000}
+    depends_on:
+      db: {condition: service_healthy}
+    volumes: [media-data:/data]
+    ports: ["127.0.0.1:8080:8080"]
+  frontend:
+    build: ./frontend
+    ports: ["5173:80"]
+    depends_on: [backend]
+  ml:
+    build: ./ml-service
+    environment:
+      GENRE_MODEL_PATH: ${COMPOSE_GENRE_MODEL_PATH:-}
+      AUDIO_MAX_BYTES: ${AUDIO_MAX_BYTES:-26214400}
+    volumes: [./ml-service/models:/models:ro]
+    ports: ["127.0.0.1:8000:8000"]
+volumes:
+  mysql-data:
+  media-data:

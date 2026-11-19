@@ -1,0 +1,17 @@
+2026-11-19T04:05:33.510480Z 0 [System] [MY-015015] [Server] MySQL Server - start.
+2026-11-19T04:05:33.942004Z 0 [System] [MY-010116] [Server] E:\projectexcelr!\tools\mysql-8.4.0-winx64\bin\mysqld.exe (mysqld 8.4.0) starting as process 19376
+2026-11-19T04:05:34.140958Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-11-19T04:05:39.850884Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-11-19T04:05:47.379780Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2026-11-19T04:05:47.380110Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2026-11-19T04:05:49.848007Z 0 [System] [MY-010931] [Server] E:\projectexcelr!\tools\mysql-8.4.0-winx64\bin\mysqld.exe: ready for connections. Version: '8.4.0'  socket: ''  port: 33317  MySQL Community Server - GPL.
+2026-11-19T04:15:06.303107Z 0 [System] [MY-015015] [Server] MySQL Server - start.
+2026-11-19T04:15:06.671826Z 0 [System] [MY-010116] [Server] E:\projectexcelr!\tools\mysql-8.4.0-winx64\bin\mysqld.exe (mysqld 8.4.0) starting as process 13600
+2026-11-19T04:15:06.946747Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-11-19T04:15:19.973226Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-11-19T04:15:21.244514Z 0 [System] [MY-010229] [Server] Starting XA crash recovery...
+2026-11-19T04:15:21.256890Z 0 [System] [MY-010232] [Server] XA crash recovery finished.
+2026-11-19T04:15:22.064136Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2026-11-19T04:15:22.064319Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2026-11-19T04:15:22.336965Z 0 [System] [MY-010931] [Server] E:\projectexcelr!\tools\mysql-8.4.0-winx64\bin\mysqld.exe: ready for connections. Version: '8.4.0'  socket: ''  port: 33317  MySQL Community Server - GPL.
+2026-11-19T04:15:22.771071Z 7 [Warning] [MY-010235] [Server] Following users were specified in CREATE USER IF NOT EXISTS but they already exist. Corresponding entry in binary log used default authentication plugin 'caching_sha2_password' to rewrite authentication information (if any) for them: 'raagify_test'@'localhost'

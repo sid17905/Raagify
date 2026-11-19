@@ -1,0 +1,19 @@
+Observed: PASS browser form login 
+Observed: PASS session restored on browser reload 
+Observed: PASS native audio decodes and playback advances {'duration': 15, 'currentTime': 0.346787}
+Observed: PASS browser seek and resume 10.213288
+Observed: PASS native authenticated Range 206 [{'url': 'http://127.0.0.1:15173/api/songs/17/stream', 'status': 206, 'range': 'bytes 0-661543/661544'}]
+Observed: PASS volume control 
+Observed: PASS next and previous controls 
+Observed: PASS browser likes and Liked Songs page 
+Observed: PASS browser playlist create 
+Observed: PASS browser playlist add 
+Observed: PASS browser playlist rename 
+Observed: PASS browser playlist remove 
+Observed: PASS browser playlist delete 
+Observed: PASS mobile layout and sign-out access 
+Observed: PASS browser logout 
+Observed: PASS admin audio and cover upload in browser 
+Observed: PASS admin genre override in browser 
+Observed: PASS admin delete in browser 
+Observed: PASS no browser page errors 
