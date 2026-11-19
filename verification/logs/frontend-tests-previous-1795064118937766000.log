@@ -1,0 +1,150 @@
+
+> raagify-frontend@1.0.0 test
+> vitest run
+
+
+ RUN  v3.1.4 E:/Raagify/frontend
+
+ ❯ src/BatchUpload.test.jsx (5 tests | 5 failed) 23ms
+   × prefills filename titles/durations and only enables uploads with required metadata 18ms
+     → [vitest] No "default" export is defined on the "./batchUpload" mock. Did you forget to return it from "vi.mock"?
+If you need to partially mock a module, you can use "importOriginal" helper inside:
+
+   × keeps successes and retries only a server-rejected track 1ms
+     → [vitest] No "default" export is defined on the "./batchUpload" mock. Did you forget to return it from "vi.mock"?
+If you need to partially mock a module, you can use "importOriginal" helper inside:
+
+   × does not retry a network failure whose server outcome is unknown 1ms
+     → [vitest] No "default" export is defined on the "./batchUpload" mock. Did you forget to return it from "vi.mock"?
+If you need to partially mock a module, you can use "importOriginal" helper inside:
+
+   × stops a batch after permission denial and blocks closing during an upload 1ms
+     → [vitest] No "default" export is defined on the "./batchUpload" mock. Did you forget to return it from "vi.mock"?
+If you need to partially mock a module, you can use "importOriginal" helper inside:
+
+   × rejects unsupported file types and skips files already selected 1ms
+     → [vitest] No "default" export is defined on the "./batchUpload" mock. Did you forget to return it from "vi.mock"?
+If you need to partially mock a module, you can use "importOriginal" helper inside:
+
+ ✓ src/useResource.test.jsx (1 test) 74ms
+ ✓ src/AuthContext.test.jsx (3 tests) 123ms
+ ✓ src/PlayerContext.test.jsx (1 test) 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/BatchUpload.test.jsx > prefills filename titles/durations and only enables uploads with required metadata
+Error: [vitest] No "default" export is defined on the "./batchUpload" mock. Did you forget to return it from "vi.mock"?
+If you need to partially mock a module, you can use "importOriginal" helper inside:
+
+vi.mock(import("./batchUpload"), async (importOriginal) => {
+  const actual = await importOriginal()
+  return {
+    ...actual,
+    // your mocked methods
+  }
+})
+
+ ❯ src/BatchUpload.test.jsx:41:11
+     39| 
+     40| it("prefills filename titles/durations and only enables uploads with r…
+     41|   render(<BatchUpload onClose={vi.fn()} onChanged={vi.fn()} />);
+       |           ^
+     42|   fireEvent.change(screen.getByLabelText(/Select audio files/), {
+     43|     target: { files: [new File(["RIFF"], "First_track.wav")] },
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  src/BatchUpload.test.jsx > keeps successes and retries only a server-rejected track
+Error: [vitest] No "default" export is defined on the "./batchUpload" mock. Did you forget to return it from "vi.mock"?
+If you need to partially mock a module, you can use "importOriginal" helper inside:
+
+vi.mock(import("./batchUpload"), async (importOriginal) => {
+  const actual = await importOriginal()
+  return {
+    ...actual,
+    // your mocked methods
+  }
+})
+
+ ❯ src/BatchUpload.test.jsx:70:11
+     68|     })
+     69|     .mockResolvedValueOnce({ data: { id: 2, featureStatus: "PENDING" }…
+     70|   render(<BatchUpload onClose={vi.fn()} onChanged={changed} />);
+       |           ^
+     71|   await selectTracks();
+     72|   fireEvent.click(
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  src/BatchUpload.test.jsx > does not retry a network failure whose server outcome is unknown
+Error: [vitest] No "default" export is defined on the "./batchUpload" mock. Did you forget to return it from "vi.mock"?
+If you need to partially mock a module, you can use "importOriginal" helper inside:
+
+vi.mock(import("./batchUpload"), async (importOriginal) => {
+  const actual = await importOriginal()
+  return {
+    ...actual,
+    // your mocked methods
+  }
+})
+
+ ❯ src/BatchUpload.test.jsx:104:11
+    102| it("does not retry a network failure whose server outcome is unknown",…
+    103|   write.mockRejectedValue(new Error("Network unavailable"));
+    104|   render(<BatchUpload onClose={vi.fn()} onChanged={vi.fn()} />);
+       |           ^
+    105|   await selectTracks(["Unknown.wav"]);
+    106|   fireEvent.click(
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+ FAIL  src/BatchUpload.test.jsx > stops a batch after permission denial and blocks closing during an upload
+Error: [vitest] No "default" export is defined on the "./batchUpload" mock. Did you forget to return it from "vi.mock"?
+If you need to partially mock a module, you can use "importOriginal" helper inside:
+
+vi.mock(import("./batchUpload"), async (importOriginal) => {
+  const actual = await importOriginal()
+  return {
+    ...actual,
+    // your mocked methods
+  }
+})
+
+ ❯ src/BatchUpload.test.jsx:126:11
+    124|   );
+    125|   const close = vi.fn();
+    126|   render(<BatchUpload onClose={close} onChanged={vi.fn()} />);
+       |           ^
+    127|   await selectTracks();
+    128|   fireEvent.click(
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/5]⎯
+
+ FAIL  src/BatchUpload.test.jsx > rejects unsupported file types and skips files already selected
+Error: [vitest] No "default" export is defined on the "./batchUpload" mock. Did you forget to return it from "vi.mock"?
+If you need to partially mock a module, you can use "importOriginal" helper inside:
+
+vi.mock(import("./batchUpload"), async (importOriginal) => {
+  const actual = await importOriginal()
+  return {
+    ...actual,
+    // your mocked methods
+  }
+})
+
+ ❯ src/BatchUpload.test.jsx:140:11
+    138| 
+    139| it("rejects unsupported file types and skips files already selected", …
+    140|   render(<BatchUpload onClose={vi.fn()} onChanged={vi.fn()} />);
+       |           ^
+    141|   const file = new File(["text"], "notes.txt", { lastModified: 1 });
+    142|   const picker = screen.getByLabelText(/Select audio files/);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/5]⎯
+
+
+ Test Files  1 failed | 3 passed (4)
+      Tests  5 failed | 5 passed (10)
+   Start at  10:23:45
+   Duration  9.15s (transform 878ms, setup 8.38s, collect 2.37s, tests 222ms, environment 15.27s, prepare 4.07s)
+

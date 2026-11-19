@@ -1,0 +1,68 @@
+[
+  {
+    "classification": "Observed",
+    "check": "batch empty state",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "filename titles, real native audio duration detection and missing-details guidance",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "shared metadata, per-track edits and optional cover",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "partial batch success with real invalid-signature 400",
+    "passed": true,
+    "details": "[201, 400, 201]"
+  },
+  {
+    "classification": "Observed",
+    "check": "replacement audio and retry do not resubmit successful tracks",
+    "passed": true,
+    "details": "[201, 400, 201, 201]"
+  },
+  {
+    "classification": "Observed",
+    "check": "three persisted DTOs with edited metadata, cover and actual ML features",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "batch-uploaded audio authenticated Range bytes",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "batch dialog fits mobile viewport",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "saved batch tracks remain editable through Manage music",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "no browser page errors",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "classification": "Observed",
+    "check": "batch transport retains backend ADMIN enforcement",
+    "passed": true,
+    "details": "listener POST -> 403"
+  }
+]

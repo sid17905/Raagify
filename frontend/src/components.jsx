@@ -166,19 +166,29 @@ export function SongList({ songs = [], refresh, onRemove, onMove }) {
     </>
   );
 }
-export function Modal({ title, children, onClose }) {
+export function Modal({
+  title,
+  children,
+  onClose,
+  className = "",
+  closeDisabled = false,
+}) {
   return (
     <div className="modal-backdrop" onClick={onClose}>
       <section
         role="dialog"
         aria-modal="true"
         aria-label={title}
-        className="modal"
+        className={`modal ${className}`}
         onClick={(e) => e.stopPropagation()}
       >
         <div className="modal-title">
           <h2>{title}</h2>
-          <button aria-label="Close dialog" onClick={onClose}>
+          <button
+            aria-label="Close dialog"
+            disabled={closeDisabled}
+            onClick={onClose}
+          >
             ×
           </button>
         </div>

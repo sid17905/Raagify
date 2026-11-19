@@ -1,0 +1,29 @@
+
+> raagify-frontend@1.0.0 build
+> vite build
+
+vite v6.3.5 building for production...
+transforming...
+✓ 89 modules transformed.
+✗ Build failed in 819ms
+error during build:
+src/App.jsx (16:7): "default" is not exported by "src/batchUpload.js", imported by "src/App.jsx".
+file: E:/Raagify/frontend/src/App.jsx:16:7
+
+14: import useResource from "./useResource";
+15: import { Cover, Modal, Notice, SongList, State } from "./components";
+16: import BatchUpload from "./BatchUpload";
+           ^
+17: 
+18: export default function App() {
+
+    at getRollupError (file:///E:/Raagify/frontend/node_modules/rollup/dist/es/shared/parseAst.js:355:41)
+    at error (file:///E:/Raagify/frontend/node_modules/rollup/dist/es/shared/parseAst.js:351:42)
+    at Module.error (file:///E:/Raagify/frontend/node_modules/rollup/dist/es/shared/node-entry.js:18670:16)
+    at Module.traceVariable (file:///E:/Raagify/frontend/node_modules/rollup/dist/es/shared/node-entry.js:19107:29)
+    at ModuleScope.findVariable (file:///E:/Raagify/frontend/node_modules/rollup/dist/es/shared/node-entry.js:15335:39)
+    at FunctionScope.findVariable (file:///E:/Raagify/frontend/node_modules/rollup/dist/es/shared/node-entry.js:6316:38)
+    at FunctionBodyScope.findVariable (file:///E:/Raagify/frontend/node_modules/rollup/dist/es/shared/node-entry.js:6316:38)
+    at Identifier.bind (file:///E:/Raagify/frontend/node_modules/rollup/dist/es/shared/node-entry.js:6072:40)
+    at CallExpression.bind (file:///E:/Raagify/frontend/node_modules/rollup/dist/es/shared/node-entry.js:3261:28)
+    at CallExpression.bind (file:///E:/Raagify/frontend/node_modules/rollup/dist/es/shared/node-entry.js:14004:15)

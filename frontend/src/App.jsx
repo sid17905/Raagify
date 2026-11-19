@@ -13,6 +13,7 @@ import { PlayerProvider, usePlayer, formatTime } from "./PlayerContext";
 import { write, message } from "./api";
 import useResource from "./useResource";
 import { Cover, Modal, Notice, SongList, State } from "./components";
+import BatchUpload from "./BatchUpload";
 
 export default function App() {
   return (
@@ -704,6 +705,7 @@ function Admin() {
   const [page, setPage] = useState(0),
     r = useResource(`/songs?size=50&page=${page}`),
     [uploading, setUploading] = useState(false),
+    [batching, setBatching] = useState(false),
     [editing, setEditing] = useState(null),
     [deleting, setDeleting] = useState(null),
     [error, setError] = useState(""),
@@ -743,9 +745,12 @@ function Admin() {
         title="Keep the collection growing."
         text="Upload audio, add artwork, and make every track easy to find."
         action={
-          <button className="primary" onClick={() => setUploading(true)}>
-            ↑ Upload a song
-          </button>
+          <div className="button-group">
+            <button onClick={() => setBatching(true)}>Batch upload</button>
+            <button className="primary" onClick={() => setUploading(true)}>
+              ↑ Upload a song
+            </button>
+          </div>
         }
       />
       <Notice error={error} />
@@ -804,6 +809,15 @@ function Admin() {
           </button>
         </div>
       </State>
+      {batching && (
+        <BatchUpload
+          onClose={() => {
+            setBatching(false);
+            r.refresh();
+          }}
+          onChanged={r.refresh}
+        />
+      )}
       {(uploading || editing) && (
         <SongForm
           song={editing}

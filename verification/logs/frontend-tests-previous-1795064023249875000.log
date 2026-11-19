@@ -1,0 +1,16 @@
+
+> raagify-frontend@1.0.0 test
+> vitest run
+
+
+ RUN  v3.1.4 E:/Raagify/frontend
+
+ ✓ src/useResource.test.jsx (1 test) 109ms
+ ✓ src/AuthContext.test.jsx (3 tests) 241ms
+ ✓ src/PlayerContext.test.jsx (1 test) 10ms
+
+ Test Files  3 passed (3)
+      Tests  5 passed (5)
+   Start at  09:41:51
+   Duration  7.99s (transform 452ms, setup 4.58s, collect 1.12s, tests 360ms, environment 10.95s, prepare 1.61s)
+

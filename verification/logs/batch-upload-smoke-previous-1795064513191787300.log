@@ -1,0 +1,11 @@
+Observed: PASS batch empty state 
+Observed: PASS filename titles, real native audio duration detection and missing-details guidance 
+Observed: PASS shared metadata, per-track edits and optional cover 
+Observed: PASS partial batch success with real invalid-signature 400 [201, 400, 201]
+Observed: PASS replacement audio and retry do not resubmit successful tracks [201, 400, 201, 201]
+Observed: PASS three persisted DTOs with edited metadata, cover and actual ML features 
+Observed: PASS batch-uploaded audio authenticated Range bytes 
+Observed: PASS batch dialog fits mobile viewport 
+Observed: PASS saved batch tracks remain editable through Manage music 
+Observed: PASS no browser page errors 
+Observed: PASS batch transport retains backend ADMIN enforcement listener POST -> 403

@@ -73,6 +73,12 @@ npm.cmd --prefix frontend run dev -- --port 5173 --strictPort
 
 **Observed (source):** Upload audio plus an optional cover, supply title, artist and duration in seconds, and optionally album/genre. Successful analysis stores READY features; unavailable/timed-out ML still saves the upload with PENDING features. Similar and personal recommendations use genre fallback, with popularity for new users. Pending tracks have a Retry features action. Admin genre overrides survive retries.
 
+**Observed (source):** Manage music -> Batch upload accepts up to 25 WAV/MP3/OGG files per batch, with a 25 MiB limit per file. Titles are prefilled from filenames and durations are read from local audio when supported. Review title, artist and duration before publishing; album, genre and artwork are optional. Apply shared artist/album/genre values to unsaved tracks, then adjust individual tracks. Upload ready tracks saves them sequentially through the same protected upload API. Successful rows remain saved when another file fails, and retries skip successful rows. Use Edit in Manage music to change saved details later.
+
+**Observed (source):** Queued files remain in the current browser tab until saved; closing the dialog or reloading loses unsaved selections. Network/server failures with an unknown outcome are not automatically retried: check the refreshed collection before selecting the file again. Server-rejected tracks can be corrected/replaced and retried. Each upload retains backend role/CSRF, signature/size validation and ML fallback behavior.
+
+**Observed:** [Batch verification](verification/BATCH_UPLOAD.md) records 10 passing frontend tests and 11 real browser/API checks, including partial failure, retry, metadata edits and role denial.
+
 **Recommendation:** For pretrained genre classification candidates and their required adapters, see [docs/PRETRAINED_GENRE.md](docs/PRETRAINED_GENRE.md). The running service remains explicitly PLACEHOLDER until a compatible model is installed and tested.
 
 **Observed (source):** MySQL records and media files persist across normal process restarts. Browser sessions and player queues are in memory; after restarting Spring, sign in again. Reloading the browser while Spring remains running restores its existing session.

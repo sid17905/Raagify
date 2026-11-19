@@ -1,5 +1,7 @@
 # Raagify verification report
 
+**Observed:** This document retains the initial full-stack verification. Later batch-upload checks are recorded in [BATCH_UPLOAD.md](BATCH_UPLOAD.md): frontend tests now pass 10/10, with 11 additional real browser/API checks. The command register retains both initial and follow-up executions.
+
 **Observed:** This report records Raagify executions on 2026-11-19. The supplied REA ledger records another workspace and is not current-app evidence. Observed means source fact or actual execution; Inference means a reasoned but unexercised conclusion; Recommendation means a proposed action; Unverified means unexecuted behavior with its boundary.
 
 ## Results
