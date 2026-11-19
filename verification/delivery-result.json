@@ -1,11 +1,24 @@
 {
   "classification": "Observed",
-  "localCommit": "Created in .cache/publish; main branch",
-  "pushAttempt": "Failed with exit 128",
-  "pushReason": "Windows wincredman could not persist credentials; no GitHub username available non-interactively. GitHub CLI reported invalid stored authentication.",
+  "commit": "4d6decfeb71512c862f778efcb88e2c4928a1502",
   "remote": "https://github.com/sid17905/Raagify.git",
-  "remotePublished": false,
-  "composeRuntime": "Unverified: Docker engine pipe unavailable",
-  "genrePrediction": "Observed: explicit PLACEHOLDER; no trained model supplied",
-  "testsPassed": {"backend": 9, "frontend": 5, "python": 4, "liveHttp": 59, "browser": 19}
+  "remotePublished": true,
+  "scope": "Final media-only code and analytics; supersedes the original failed-push receipt",
+  "testsPassed": {
+    "backend": 10,
+    "frontend": 13,
+    "python": 5,
+    "mediaDashboardLive": 16,
+    "batchLive": 11,
+    "sidebarRouteViewport": 48
+  },
+  "database": "Observed: real isolated MySQL 8.4, Flyway V1/V2/V3 applied",
+  "library": "Observed: all 60 user-supplied genre sets matched exactly; all 60 have persisted covers",
+  "mediaProcessing": "Observed: DSP, embedded tags and artwork; trained genre classifier removed",
+  "runtime": "Observed: frontend 15173, backend 18080, processor 18000 respond successfully",
+  "composeRuntime": "Unverified: engine pipe unavailable; configuration validation passed",
+  "screenshotFiles": [
+    "pics/admin_analytics1.png",
+    "pics/admin_analytics2.png"
+  ]
 }
