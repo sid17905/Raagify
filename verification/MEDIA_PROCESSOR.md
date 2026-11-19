@@ -33,3 +33,13 @@
 **Unverified:** Docker container runtime, physical speaker output, every codec/device and production deployment. Frontend component mocks and bundle compilation are reported separately from real MySQL/HTTP/Edge evidence. No trained classifier remains.
 
 **Recommendation:** Run `python verification/media_dashboard_smoke.py` and `python verification/batch_upload_smoke.py` with this isolated runtime to repeat the live checks. The dashboard script deliberately restarts Spring and the processor, invalidating live sessions.
+
+## Player covers, cover clicks and right panel
+
+**Observed — subsequent verification on 19 November 2026:** Backend tests passed 10/10 after adding public session restoration; protected `/auth/me` still returns 401 when signed out. Frontend tests passed 13/13 and the final Vite build passed. These checks are recorded in the updated logs and command register.
+
+**Observed:** `python -c "import sys; sys.path.insert(0,'verification'); from runtime import run; sys.exit(run('player-artwork-smoke',[sys.executable,'verification/player_artwork_smoke.py']))"` passed 16 live Edge checks. [player-artwork-results.json](player-artwork-results.json) and `logs/player-artwork-smoke.log` record signed-out startup, valid favicon resources, signed-in reload, actual MP3 playback with a decoded cover, next/previous cover updates, clickable player artwork and the large right-side panel opened from the song title. Escape closes it and returns focus; the panel and player cover fit mobile without overflow. Clicking discovery, browse, admin, analytics, liked-song and playlist artwork plays the matching song. The synthetic playlist and added like were removed. Normal login/reload/playback/logout produced no failed HTTP resources or page errors.
+
+**Observed:** An intentionally invalid image payload exercised note fallback and recovery on track change. This isolated interception verifies failure handling; successful cover/playback checks used actual stored artwork and MP3 audio. Earlier browser harness failures (a missing request base URL and Escape handling outside the panel) remain in archived logs; the final run passed.
+
+**Observed:** Spring was packaged and restarted with `player-auth-package`; `logs/player-auth-package.log` records success. The missing `/favicon.ico` now returns 200, and `/api/auth/session` returns `{user:null}` with 200 when signed out. All 60 supplied genre sets/covers remain intact. The README gallery was refreshed with the seven supplied/generated screenshots present at verification time.

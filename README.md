@@ -20,6 +20,26 @@
 
 ![Admin analytics2](pics/admin_analytics2.png)
 
+**Observed — Homepage:**
+
+![Homepage](pics/homepage.png)
+
+**Observed — Likedsongs:**
+
+![Likedsongs](pics/likedsongs.png)
+
+**Observed — Nowplayingpanel:**
+
+![Nowplayingpanel](pics/nowplayingpanel.png)
+
+**Observed — Playlist:**
+
+![Playlist](pics/playlist.png)
+
+**Observed — Songdetails:**
+
+![Songdetails](pics/songdetails.png)
+
 <!-- screenshots:end -->
 
 ## Run locally
@@ -92,6 +112,8 @@ npm.cmd --prefix frontend run dev -- --port 5173 --strictPort
 **Observed (source):** One session + CSRF authentication model protects browser/API writes. Identity comes from the session. Playlist ownership, likes and history are scoped to the current account. Duplicate likes and playlist entries return 409. Validated DTOs and global errors cover 400/401/403/404/409/413; hashes, file paths and raw feature vectors are not returned. Upload type, signature and size checks precede UUID file storage.
 
 **Observed (source):** MySQL and audio/cover files persist across process restarts. Reloading the browser restores a live Spring session. Restarting Spring requires signing in again because sessions are in memory. The native audio player uses authenticated Range streaming and supports pause/play, next/previous, seek and volume. API and media requests share the browser origin.
+
+**Observed (source):** Cover images throughout the app start the matching song when clicked, including catalog cards, likes, playlists, song details, admin lists and analytics. The bottom player displays the current cover. Clicking its song title opens a panel on the right with the large cover and metadata; it follows track changes and closes with × or Escape. Startup uses `/api/auth/session` to represent signed-out state without an expected 401 request; `/api/auth/me` and protected music endpoints still require authentication.
 
 ## Docker Compose
 

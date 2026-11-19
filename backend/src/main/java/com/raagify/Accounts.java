@@ -91,4 +91,10 @@ class AuthController {
         return org.springframework.http.ResponseEntity.status(201).body(accounts.register(request));
     }
     @GetMapping("/me") Accounts.UserDto me() { return accounts.current(); }
+    record SessionDto(Accounts.UserDto user) {}
+    @GetMapping("/session") SessionDto session(Authentication authentication) {
+        boolean signedIn = authentication != null && authentication.isAuthenticated()
+            && !(authentication instanceof org.springframework.security.authentication.AnonymousAuthenticationToken);
+        return new SessionDto(signedIn ? accounts.current() : null);
+    }
 }

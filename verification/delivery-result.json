@@ -20,5 +20,11 @@
   "screenshotFiles": [
     "pics/admin_analytics1.png",
     "pics/admin_analytics2.png"
-  ]
+  ],
+  "latestWork": {
+    "classification": "Observed",
+    "scope": "Clickable song covers, player artwork, right panel and session/favicon fixes",
+    "verification": "10 backend tests, 13 frontend tests, 16 live Edge checks and frontend build passed",
+    "publication": "Unverified: latest changes require GitHub credentials; preceding published commit remains recorded above"
+  }
 }

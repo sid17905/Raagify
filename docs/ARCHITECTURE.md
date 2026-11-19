@@ -15,6 +15,7 @@
 | Observed (source) | POST `/api/auth/register` | JSON displayName/email/password; 201 LISTENER DTO |
 | Observed (source) | POST `/api/auth/login` | Form-urlencoded email/password; 200 and session cookie |
 | Observed (source) | GET `/api/auth/me` | Safe current user DTO |
+| Observed (source) | GET `/api/auth/session` | Public session restoration; `{user:null}` when signed out, safe current user DTO when signed in |
 | Observed (source) | POST `/api/auth/logout` | 200; invalidates session |
 | Observed (source) | GET `/api/songs?q=&page=0&size=20` | Search title/artist/genre; maximum size 50; paginated DTO |
 | Observed (source) | GET `/api/songs/{id}` | Safe song DTO including liked flag for current user |

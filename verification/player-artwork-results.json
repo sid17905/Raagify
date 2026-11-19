@@ -1,0 +1,82 @@
+[
+  {
+    "classification": "Observed",
+    "check": "signed-out startup and favicon resources succeed without 401/404",
+    "passed": true
+  },
+  {
+    "classification": "Observed",
+    "check": "signed-in session restores on reload",
+    "passed": true
+  },
+  {
+    "classification": "Observed",
+    "check": "505 embedded cover decodes in the player during real MP3 playback",
+    "passed": true
+  },
+  {
+    "classification": "Observed",
+    "check": "clicking the player title opens a real album cover in the right panel",
+    "passed": true
+  },
+  {
+    "classification": "Observed",
+    "check": "next/previous update covers and pause keeps current artwork",
+    "passed": true
+  },
+  {
+    "classification": "Observed",
+    "check": "Escape closes the panel with focus restored and player artwork starts playback",
+    "passed": true
+  },
+  {
+    "classification": "Observed",
+    "check": "cover fits the mobile player without overflow",
+    "passed": true
+  },
+  {
+    "classification": "Observed",
+    "check": "right panel fits mobile and stays clear of playback controls",
+    "passed": true
+  },
+  {
+    "classification": "Observed",
+    "check": "broken artwork falls back to the note and recovers on track change",
+    "passed": true
+  },
+  {
+    "classification": "Observed",
+    "check": "clicking discovery card artwork plays the matching real song",
+    "passed": true
+  },
+  {
+    "classification": "Observed",
+    "check": "clicking browse row artwork plays the matching real song",
+    "passed": true
+  },
+  {
+    "classification": "Observed",
+    "check": "clicking admin catalog artwork plays the matching real song",
+    "passed": true
+  },
+  {
+    "classification": "Observed",
+    "check": "clicking analytics popular song artwork plays the matching real song",
+    "passed": true
+  },
+  {
+    "classification": "Observed",
+    "check": "clicking liked song cover plays Actor",
+    "passed": true
+  },
+  {
+    "classification": "Observed",
+    "check": "clicking playlist song cover plays Actor",
+    "passed": true
+  },
+  {
+    "classification": "Observed",
+    "check": "login, reload, playback and logout have no failed HTTP resources or page errors",
+    "passed": true
+  }
+]

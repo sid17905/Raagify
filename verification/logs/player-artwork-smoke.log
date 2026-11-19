@@ -1,0 +1,16 @@
+Observed: PASS signed-out startup and favicon resources succeed without 401/404
+Observed: PASS signed-in session restores on reload
+Observed: PASS 505 embedded cover decodes in the player during real MP3 playback
+Observed: PASS clicking the player title opens a real album cover in the right panel
+Observed: PASS next/previous update covers and pause keeps current artwork
+Observed: PASS Escape closes the panel with focus restored and player artwork starts playback
+Observed: PASS cover fits the mobile player without overflow
+Observed: PASS right panel fits mobile and stays clear of playback controls
+Observed: PASS broken artwork falls back to the note and recovers on track change
+Observed: PASS clicking discovery card artwork plays the matching real song
+Observed: PASS clicking browse row artwork plays the matching real song
+Observed: PASS clicking admin catalog artwork plays the matching real song
+Observed: PASS clicking analytics popular song artwork plays the matching real song
+Observed: PASS clicking liked song cover plays Actor
+Observed: PASS clicking playlist song cover plays Actor
+Observed: PASS login, reload, playback and logout have no failed HTTP resources or page errors

@@ -41,11 +41,26 @@ export function State({
     );
   return children;
 }
-export function Cover({ song }) {
+export function Cover({ song, queue }) {
   const [failed, setFailed] = useState(false);
+  const player = usePlayer();
   useEffect(() => setFailed(false), [song.coverUrl]);
   return (
-    <div className={`cover tone-${song.id % 5}`}>
+    <button
+      type="button"
+      className={`cover tone-${song.id % 5}`}
+      aria-label={`Play ${song.title || "track"} from cover`}
+      disabled={!song.id || !player}
+      onClick={() =>
+        player.play(
+          {
+            ...song,
+            streamUrl: song.streamUrl || `/api/songs/${song.id}/stream`,
+          },
+          queue,
+        )
+      }
+    >
       {song.coverUrl && !failed ? (
         <img
           src={song.coverUrl}
@@ -55,7 +70,7 @@ export function Cover({ song }) {
       ) : (
         <span aria-hidden="true">♫</span>
       )}
-    </div>
+    </button>
   );
 }
 export function SongList({ songs = [], refresh, onRemove, onMove }) {
@@ -103,7 +118,7 @@ export function SongList({ songs = [], refresh, onRemove, onMove }) {
               <span>▶</span>
             </button>
             <div className="track">
-              <Cover song={song} />
+              <Cover song={song} queue={songs} />
               <div>
                 <Link to={`/songs/${song.id}`}>{song.title}</Link>
                 <span>

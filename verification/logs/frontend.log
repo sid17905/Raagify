@@ -89,3 +89,42 @@ Error: connect ECONNREFUSED 127.0.0.1:18080
 1:30:07 PM [vite] (client) hmr update /src/App.jsx
 1:30:08 PM [vite] (client) hmr update /src/AnalyticsDashboard.jsx
 1:30:50 PM [vite] (client) hmr update /src/BatchUpload.jsx
+1:57:02 PM [vite] (client) hmr update /src/PlayerContext.jsx
+1:57:02 PM [vite] (client) hmr invalidate /src/PlayerContext.jsx Could not Fast Refresh ("formatTime" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+1:57:02 PM [vite] (client) hmr update /src/App.jsx, /src/components.jsx
+1:57:04 PM [vite] (client) hmr update /src/styles.css
+1:59:11 PM [vite] (client) hmr update /src/AuthContext.jsx
+1:59:11 PM [vite] (client) hmr invalidate /src/AuthContext.jsx Could not Fast Refresh ("useAuth" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+1:59:11 PM [vite] (client) hmr update /src/App.jsx
+1:59:18 PM [vite] (client) page reload index.html
+1:59:36 PM [vite] (client) page reload index.html
+2:00:24 PM [vite] http proxy error: /api/auth/session
+Error: connect ECONNREFUSED 127.0.0.1:18080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1645:16)
+2:00:24 PM [vite] http proxy error: /api/auth/session
+Error: connect ECONNREFUSED 127.0.0.1:18080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1645:16)
+2:00:24 PM [vite] http proxy error: /api/auth/session
+Error: connect ECONNREFUSED 127.0.0.1:18080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1645:16)
+2:00:25 PM [vite] http proxy error: /api/auth/session
+Error: connect ECONNREFUSED 127.0.0.1:18080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1645:16)
+2:06:51 PM [vite] (client) hmr update /src/components.jsx
+2:06:51 PM [vite] (client) hmr update /src/components.jsx
+2:06:55 PM [vite] (client) hmr update /src/App.jsx
+2:07:00 PM [vite] (client) hmr update /src/styles.css
+2:07:44 PM [vite] (client) hmr update /src/PlayerContext.jsx
+2:07:45 PM [vite] (client) hmr invalidate /src/PlayerContext.jsx Could not Fast Refresh ("formatTime" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+2:07:45 PM [vite] (client) hmr update /src/App.jsx, /src/components.jsx
+2:07:49 PM [vite] (client) hmr update /src/styles.css
+2:08:09 PM [vite] (client) hmr update /src/PlayerContext.jsx
+2:08:09 PM [vite] (client) hmr update /src/components.jsx
+2:08:09 PM [vite] (client) hmr invalidate /src/PlayerContext.jsx Could not Fast Refresh ("formatTime" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+2:08:09 PM [vite] (client) hmr update /src/App.jsx, /src/components.jsx
+2:08:58 PM [vite] (client) hmr update /src/PlayerContext.jsx
+2:08:58 PM [vite] (client) hmr invalidate /src/PlayerContext.jsx Could not Fast Refresh ("formatTime" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+2:08:58 PM [vite] (client) hmr update /src/App.jsx, /src/components.jsx
+2:10:53 PM [vite] (client) hmr update /src/PlayerContext.jsx
+2:10:53 PM [vite] (client) hmr invalidate /src/PlayerContext.jsx Could not Fast Refresh ("formatTime" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+2:10:53 PM [vite] (client) hmr update /src/App.jsx, /src/components.jsx

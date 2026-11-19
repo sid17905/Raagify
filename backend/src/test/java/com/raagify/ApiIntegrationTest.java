@@ -81,10 +81,15 @@ class ApiIntegrationTest {
 
     @Test void authenticationCsrfForcedRoleAndLogout() throws Exception {
         var anonymous=new Client();assertEquals(401,anonymous.get("/songs").statusCode());
+        assertEquals(200,anonymous.get("/auth/session").statusCode());
+        assertTrue(node(anonymous.get("/auth/session")).get("user").isNull());
         assertEquals(403,anonymous.request("POST","/auth/register","{}".getBytes(),"application/json",Map.of()).statusCode());
         var c=listener();assertEquals("LISTENER",node(c.get("/auth/me")).get("role").asText());
+        assertEquals(node(c.get("/auth/me")),node(c.get("/auth/session")).get("user"));
         assertEquals(401,c.write("POST","/auth/login","email=wrong&password=wrong".getBytes(),"application/x-www-form-urlencoded").statusCode());
         assertEquals(200,c.write("POST","/auth/logout",null).statusCode());assertEquals(401,c.get("/auth/me").statusCode());
+        assertEquals(200,c.get("/auth/session").statusCode());
+        assertTrue(node(c.get("/auth/session")).get("user").isNull());
     }
     @Test void roleDenialAndStableValidation() throws Exception {
         var c=listener();assertEquals(403,upload(c,wave(),"audio/wav","").statusCode());

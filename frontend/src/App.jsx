@@ -345,7 +345,7 @@ function Discover() {
           {r.data?.slice(0, 5).map((song) => (
             <article className="song-card" key={song.id}>
               <div className="card-art">
-                <Cover song={song} />
+                <Cover song={song} queue={r.data} />
                 <button
                   aria-label={`Play ${song.title}`}
                   onClick={() => player.play(song, r.data)}
@@ -680,7 +680,10 @@ function Song() {
     <>
       <State resource={r}>
         <div className="song-detail">
-          <Cover song={r.data || { id: 0 }} />
+          <Cover
+            song={r.data || { id: 0 }}
+            queue={r.data ? [r.data, ...(similar.data || [])] : undefined}
+          />
           <div>
             <span className="eyebrow">
               TRACK / {r.data?.genre || "Unclassified"}

@@ -9,7 +9,7 @@ export function AuthProvider({ children }) {
     setLoading(true);
     setError("");
     try {
-      setUser((await api.get("/auth/me")).data);
+      setUser((await api.get("/auth/session")).data.user);
     } catch (e) {
       if (e.response?.status !== 401)
         setError("Unable to connect to Raagify. Please retry.");

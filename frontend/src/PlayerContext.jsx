@@ -13,11 +13,25 @@ export function PlayerProvider({ children }) {
     [duration, setDuration] = useState(0),
     [volume, setVolumeState] = useState(0.8),
     [error, setError] = useState(""),
-    [loading, setLoading] = useState(false);
+    [loading, setLoading] = useState(false),
+    [detailsOpen, setDetailsOpen] = useState(false);
   const audio = useRef(null),
     recorded = useRef(null),
-    wantPlay = useRef(false);
+    wantPlay = useRef(false),
+    detailsTrigger = useRef(null);
   const current = queue[index] || null;
+  function closeDetails() {
+    setDetailsOpen(false);
+    detailsTrigger.current?.focus();
+  }
+  useEffect(() => {
+    if (!detailsOpen) return;
+    const onEscape = (event) => {
+      if (event.key === "Escape") closeDetails();
+    };
+    window.addEventListener("keydown", onEscape);
+    return () => window.removeEventListener("keydown", onEscape);
+  }, [detailsOpen]);
   function start() {
     if (!audio.current) return;
     wantPlay.current = true;
@@ -109,7 +123,13 @@ export function PlayerProvider({ children }) {
         setVolume,
       }}
     >
-      {children}
+      <div
+        className={
+          detailsOpen ? "player-layout now-playing-open" : "player-layout"
+        }
+      >
+        {children}
+      </div>
       <audio
         aria-label="Raagify audio"
         ref={audio}
@@ -135,10 +155,28 @@ export function PlayerProvider({ children }) {
       />
       <div className="player" aria-label="Audio player">
         <div className="now">
-          <div className="player-art">♫</div>
+          <PlayerArtwork
+            key={`${current?.id}:${current?.coverUrl}`}
+            song={current}
+            onPlay={start}
+          />
           <div>
             <small>{loading ? "BUFFERING..." : "NOW PLAYING"}</small>
-            <strong>{current?.title || "Find something you love"}</strong>
+            {current ? (
+              <button
+                type="button"
+                className="player-title"
+                ref={detailsTrigger}
+                aria-label={`${detailsOpen ? "Hide" : "Show"} album cover for ${current.title}`}
+                aria-expanded={detailsOpen}
+                aria-controls="now-playing-panel"
+                onClick={() => setDetailsOpen((open) => !open)}
+              >
+                <strong>{current.title}</strong>
+              </button>
+            ) : (
+              <strong>Find something you love</strong>
+            )}
             <span>
               {current?.artist || "Choose a track to start listening"}
             </span>
@@ -200,7 +238,62 @@ export function PlayerProvider({ children }) {
           </div>
         )}
       </div>
+      {detailsOpen && current && (
+        <aside
+          id="now-playing-panel"
+          className="now-playing-panel"
+          aria-label="Now playing details"
+        >
+          <div className="now-playing-panel-heading">
+            <span className="eyebrow">NOW PLAYING</span>
+            <button
+              type="button"
+              aria-label="Close now playing details"
+              autoFocus
+              onClick={closeDetails}
+            >
+              ×
+            </button>
+          </div>
+          <PlayerArtwork
+            key={`${current.id}:${current.coverUrl}`}
+            className="now-playing-cover"
+            song={current}
+            onPlay={start}
+          />
+          <h2>{current.title}</h2>
+          <p className="now-playing-artist">{current.artist}</p>
+          {current.album && (
+            <p className="now-playing-album">{current.album}</p>
+          )}
+          {current.genre && (
+            <p className="now-playing-genre">{current.genre}</p>
+          )}
+        </aside>
+      )}
     </PlayerContext.Provider>
+  );
+}
+function PlayerArtwork({ song, onPlay, className = "player-art" }) {
+  const [failed, setFailed] = useState(false);
+  return (
+    <button
+      type="button"
+      className={className}
+      aria-label={`Play ${song?.title || "track"} from cover`}
+      disabled={!song}
+      onClick={onPlay}
+    >
+      {song?.coverUrl && !failed ? (
+        <img
+          src={song.coverUrl}
+          alt={`${song.title} cover`}
+          onError={() => setFailed(true)}
+        />
+      ) : (
+        "♫"
+      )}
+    </button>
   );
 }
 export const usePlayer = () => useContext(PlayerContext);

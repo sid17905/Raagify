@@ -440,6 +440,9 @@ p {
   margin-bottom: 32px;
 }
 .cover {
+  border: 0;
+  padding: 0;
+  width: 100%;
   aspect-ratio: 1;
   border-radius: 7px;
   position: relative;
@@ -477,7 +480,7 @@ p {
   position: relative;
   margin-bottom: 13px;
 }
-.card-art button {
+.card-art > button:not(.cover) {
   position: absolute;
   right: 9px;
   bottom: 9px;
@@ -491,8 +494,8 @@ p {
   opacity: 0;
   transform: translateY(5px);
 }
-.song-card:hover .card-art button,
-.card-art button:focus-visible {
+.song-card:hover .card-art > button:not(.cover),
+.card-art > button:not(.cover):focus-visible {
   opacity: 1;
   transform: none;
 }
@@ -658,6 +661,8 @@ p {
   width: 29%;
 }
 .player-art {
+  border: 0;
+  padding: 0;
   height: 48px;
   width: 48px;
   flex-shrink: 0;
@@ -667,6 +672,102 @@ p {
   place-items: center;
   font-size: 26px;
   color: #c5a58d;
+  overflow: hidden;
+}
+.player-art img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+.now .player-title {
+  display: block;
+  background: none;
+  color: inherit;
+  padding: 0;
+  border: 0;
+  text-align: left;
+}
+.now .player-title:hover strong {
+  text-decoration: underline;
+}
+.cover:focus-visible,
+.player-art:focus-visible,
+.player-title:focus-visible,
+.now-playing-cover:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+.now-playing-panel {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  bottom: 118px;
+  z-index: 10;
+  width: 300px;
+  padding: 18px;
+  overflow-y: auto;
+  background: #191a20;
+  border: 1px solid #33333c;
+  border-radius: 12px;
+  box-shadow: 0 10px 35px #0006;
+}
+.now-playing-panel-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.now-playing-panel-heading button {
+  padding: 3px 9px;
+  font-size: 22px;
+}
+.now-playing-cover {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  aspect-ratio: 1;
+  padding: 0;
+  border: 0;
+  border-radius: 9px;
+  overflow: hidden;
+  background: #332d2d;
+  color: #c5a58d;
+  font-size: 75px;
+}
+.now-playing-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.now-playing-panel h2 {
+  margin: 20px 0 8px;
+  font-size: 22px;
+  overflow-wrap: anywhere;
+}
+.now-playing-panel p {
+  overflow-wrap: anywhere;
+}
+.now-playing-artist {
+  color: #e5d9ce;
+}
+.now-playing-album,
+.now-playing-genre {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+@media (min-width: 1200px) {
+  .now-playing-open .app-shell main {
+    width: calc(100% - 236px - 332px);
+  }
+}
+@media (max-width: 750px) {
+  .now-playing-panel {
+    width: min(300px, calc(100vw - 32px));
+    bottom: 146px;
+  }
 }
 .now small {
   font-size: 7px;

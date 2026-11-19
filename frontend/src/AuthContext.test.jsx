@@ -41,7 +41,8 @@ describe("session lifecycle (isolated client tests)", () => {
       </AuthProvider>,
     );
     expect(screen.getByText("Restoring")).toBeInTheDocument();
-    await act(async () => resolve({ data: { displayName: "Asha" } }));
+    await act(async () => resolve({ data: { user: { displayName: "Asha" } } }));
+    expect(api.get).toHaveBeenCalledWith("/auth/session");
     expect(screen.getByText("Asha")).toBeInTheDocument();
   });
   it("shows connection failures distinctly from signed-out state", async () => {
@@ -55,7 +56,7 @@ describe("session lifecycle (isolated client tests)", () => {
   });
   it("refreshes CSRF after form login and clears identity on logout", async () => {
     api.get
-      .mockRejectedValueOnce({ response: { status: 401 } })
+      .mockResolvedValueOnce({ data: { user: null } })
       .mockResolvedValue({ data: { displayName: "Asha" } });
     render(
       <AuthProvider>
