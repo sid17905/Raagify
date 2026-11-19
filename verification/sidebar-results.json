@@ -1,0 +1,482 @@
+[
+  {
+    "classification": "Observed",
+    "viewport": [
+      1440,
+      960
+    ],
+    "route": "/",
+    "passed": true,
+    "noteVisible": true
+  },
+  {
+    "classification": "Observed",
+    "viewport": [
+      1440,
+      960
+    ],
+    "route": "/browse",
+    "passed": true,
+    "noteVisible": true
+  },
+  {
+    "classification": "Observed",
+    "viewport": [
+      1440,
+      960
+    ],
+    "route": "/likes",
+    "passed": true,
+    "noteVisible": true
+  },
+  {
+    "classification": "Observed",
+    "viewport": [
+      1440,
+      960
+    ],
+    "route": "/playlists",
+    "passed": true,
+    "noteVisible": true
+  },
+  {
+    "classification": "Observed",
+    "viewport": [
+      1440,
+      960
+    ],
+    "route": "/recent",
+    "passed": true,
+    "noteVisible": true
+  },
+  {
+    "classification": "Observed",
+    "viewport": [
+      1440,
+      960
+    ],
+    "route": "/admin",
+    "passed": true,
+    "noteVisible": true
+  },
+  {
+    "classification": "Observed",
+    "viewport": [
+      1280,
+      800
+    ],
+    "route": "/",
+    "passed": true,
+    "noteVisible": true
+  },
+  {
+    "classification": "Observed",
+    "viewport": [
+      1280,
+      800
+    ],
+    "route": "/browse",
+    "passed": true,
+    "noteVisible": true
+  },
+  {
+    "classification": "Observed",
+    "viewport": [
+      1280,
+      800
+    ],
+    "route": "/likes",
+    "passed": true,
+    "noteVisible": true
+  },
+  {
+    "classification": "Observed",
+    "viewport": [
+      1280,
+      800
+    ],
+    "route": "/playlists",
+    "passed": true,
+    "noteVisible": true
+  },
+  {
+    "classification": "Observed",
+    "viewport": [
+      1280,
+      800
+    ],
+    "route": "/recent",
+    "passed": true,
+    "noteVisible": true
+  },
+  {
+    "classification": "Observed",
+    "viewport": [
+      1280,
+      800
+    ],
+    "route": "/admin",
+    "passed": true,
+    "noteVisible": true
+  },
+  {
+    "classification": "Observed",
+    "viewport": [
+      1280,
+      720
+    ],
+    "route": "/",
+    "passed": true,
+    "noteVisible": false
+  },
+  {
+    "classification": "Observed",
+    "viewport": [
+      1280,
+      720
+    ],
+    "route": "/browse",
+    "passed": true,
+    "noteVisible": false
+  },
+  {
+    "classification": "Observed",
+    "viewport": [
+      1280,
+      720
+    ],
+    "route": "/likes",
+    "passed": true,
+    "noteVisible": false
+  },
+  {
+    "classification": "Observed",
+    "viewport": [
+      1280,
+      720
+    ],
+    "route": "/playlists",
+    "passed": true,
+    "noteVisible": false
+  },
+  {
+    "classification": "Observed",
+    "viewport": [
+      1280,
+      720
+    ],
+    "route": "/recent",
+    "passed": true,
+    "noteVisible": false
+  },
+  {
+    "classification": "Observed",
+    "viewport": [
+      1280,
+      720
+    ],
+    "route": "/admin",
+    "passed": true,
+    "noteVisible": false
+  },
+  {
+    "classification": "Observed",
+    "viewport": [
+      1024,
+      600
+    ],
+    "route": "/",
+    "passed": true,
+    "noteVisible": false
+  },
+  {
+    "classification": "Observed",
+    "viewport": [
+      1024,
+      600
+    ],
+    "route": "/browse",
+    "passed": true,
+    "noteVisible": false
+  },
+  {
+    "classification": "Observed",
+    "viewport": [
+      1024,
+      600
+    ],
+    "route": "/likes",
+    "passed": true,
+    "noteVisible": false
+  },
+  {
+    "classification": "Observed",
+    "viewport": [
+      1024,
+      600
+    ],
+    "route": "/playlists",
+    "passed": true,
+    "noteVisible": false
+  },
+  {
+    "classification": "Observed",
+    "viewport": [
+      1024,
+      600
+    ],
+    "route": "/recent",
+    "passed": true,
+    "noteVisible": false
+  },
+  {
+    "classification": "Observed",
+    "viewport": [
+      1024,
+      600
+    ],
+    "route": "/admin",
+    "passed": true,
+    "noteVisible": false
+  },
+  {
+    "classification": "Observed",
+    "viewport": [
+      900,
+      480
+    ],
+    "route": "/",
+    "passed": true,
+    "noteVisible": false
+  },
+  {
+    "classification": "Observed",
+    "viewport": [
+      900,
+      480
+    ],
+    "route": "/browse",
+    "passed": true,
+    "noteVisible": false
+  },
+  {
+    "classification": "Observed",
+    "viewport": [
+      900,
+      480
+    ],
+    "route": "/likes",
+    "passed": true,
+    "noteVisible": false
+  },
+  {
+    "classification": "Observed",
+    "viewport": [
+      900,
+      480
+    ],
+    "route": "/playlists",
+    "passed": true,
+    "noteVisible": false
+  },
+  {
+    "classification": "Observed",
+    "viewport": [
+      900,
+      480
+    ],
+    "route": "/recent",
+    "passed": true,
+    "noteVisible": false
+  },
+  {
+    "classification": "Observed",
+    "viewport": [
+      900,
+      480
+    ],
+    "route": "/admin",
+    "passed": true,
+    "noteVisible": false
+  },
+  {
+    "classification": "Observed",
+    "viewport": [
+      751,
+      600
+    ],
+    "route": "/",
+    "passed": true,
+    "noteVisible": false
+  },
+  {
+    "classification": "Observed",
+    "viewport": [
+      751,
+      600
+    ],
+    "route": "/browse",
+    "passed": true,
+    "noteVisible": false
+  },
+  {
+    "classification": "Observed",
+    "viewport": [
+      751,
+      600
+    ],
+    "route": "/likes",
+    "passed": true,
+    "noteVisible": false
+  },
+  {
+    "classification": "Observed",
+    "viewport": [
+      751,
+      600
+    ],
+    "route": "/playlists",
+    "passed": true,
+    "noteVisible": false
+  },
+  {
+    "classification": "Observed",
+    "viewport": [
+      751,
+      600
+    ],
+    "route": "/recent",
+    "passed": true,
+    "noteVisible": false
+  },
+  {
+    "classification": "Observed",
+    "viewport": [
+      751,
+      600
+    ],
+    "route": "/admin",
+    "passed": true,
+    "noteVisible": false
+  },
+  {
+    "classification": "Observed",
+    "viewport": [
+      750,
+      844
+    ],
+    "route": "/",
+    "passed": true,
+    "noteVisible": false
+  },
+  {
+    "classification": "Observed",
+    "viewport": [
+      750,
+      844
+    ],
+    "route": "/browse",
+    "passed": true,
+    "noteVisible": false
+  },
+  {
+    "classification": "Observed",
+    "viewport": [
+      750,
+      844
+    ],
+    "route": "/likes",
+    "passed": true,
+    "noteVisible": false
+  },
+  {
+    "classification": "Observed",
+    "viewport": [
+      750,
+      844
+    ],
+    "route": "/playlists",
+    "passed": true,
+    "noteVisible": false
+  },
+  {
+    "classification": "Observed",
+    "viewport": [
+      750,
+      844
+    ],
+    "route": "/recent",
+    "passed": true,
+    "noteVisible": false
+  },
+  {
+    "classification": "Observed",
+    "viewport": [
+      750,
+      844
+    ],
+    "route": "/admin",
+    "passed": true,
+    "noteVisible": false
+  },
+  {
+    "classification": "Observed",
+    "viewport": [
+      390,
+      844
+    ],
+    "route": "/",
+    "passed": true,
+    "noteVisible": false
+  },
+  {
+    "classification": "Observed",
+    "viewport": [
+      390,
+      844
+    ],
+    "route": "/browse",
+    "passed": true,
+    "noteVisible": false
+  },
+  {
+    "classification": "Observed",
+    "viewport": [
+      390,
+      844
+    ],
+    "route": "/likes",
+    "passed": true,
+    "noteVisible": false
+  },
+  {
+    "classification": "Observed",
+    "viewport": [
+      390,
+      844
+    ],
+    "route": "/playlists",
+    "passed": true,
+    "noteVisible": false
+  },
+  {
+    "classification": "Observed",
+    "viewport": [
+      390,
+      844
+    ],
+    "route": "/recent",
+    "passed": true,
+    "noteVisible": false
+  },
+  {
+    "classification": "Observed",
+    "viewport": [
+      390,
+      844
+    ],
+    "route": "/admin",
+    "passed": true,
+    "noteVisible": false
+  }
+]

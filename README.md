@@ -67,7 +67,13 @@ npm.cmd --prefix frontend run dev -- --port 5173 --strictPort
 
 **Observed (source):** Bootstrap creates an ADMIN only if its email does not exist. It never promotes a listener, and startup rejects an existing listener at the bootstrap email. Existing administrator passwords are not reset by subsequent startup. Registration forces LISTENER regardless of request role fields. BCrypt hashes and storage paths never appear in response DTOs.
 
+**Observed (local verification setup):** For the already-running app at http://127.0.0.1:15173, the administrator email is `private-admin@raagify.test`. Its generated password is the `adminPassword` value in the ignored local file `verification/runtime/secrets.json`. Sign out of a listener account, then use the same login form with those administrator credentials. Open Manage music -> Upload a song. These local verification credentials are not shipped in Git; a fresh installation uses your own ADMIN_EMAIL/ADMIN_PASSWORD.
+
+**Recommendation (local verification only):** If you intentionally change `adminPassword` in that secrets file, run `python verification/sync_local_admin.py` to update the existing isolated administrator hash, restart Spring and verify login. A normal server restart does not reset an existing account's password from bootstrap settings. This helper only targets `private-admin@raagify.test` in the local `raagify_test` schema.
+
 **Observed (source):** Upload audio plus an optional cover, supply title, artist and duration in seconds, and optionally album/genre. Successful analysis stores READY features; unavailable/timed-out ML still saves the upload with PENDING features. Similar and personal recommendations use genre fallback, with popularity for new users. Pending tracks have a Retry features action. Admin genre overrides survive retries.
+
+**Recommendation:** For pretrained genre classification candidates and their required adapters, see [docs/PRETRAINED_GENRE.md](docs/PRETRAINED_GENRE.md). The running service remains explicitly PLACEHOLDER until a compatible model is installed and tested.
 
 **Observed (source):** MySQL records and media files persist across normal process restarts. Browser sessions and player queues are in memory; after restarting Spring, sign in again. Reloading the browser while Spring remains running restores its existing session.
 

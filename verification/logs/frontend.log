@@ -14,3 +14,5 @@
 9:53:49 AM [vite] (client) hmr update /src/App.jsx, /src/components.jsx
 9:53:49 AM [vite] vite.config.js changed, restarting server...
 9:53:49 AM [vite] server restarted.
+10:08:09 AM [vite] (client) hmr update /src/App.jsx
+10:08:10 AM [vite] (client) hmr update /src/styles.css

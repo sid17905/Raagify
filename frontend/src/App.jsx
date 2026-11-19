@@ -211,7 +211,11 @@ function Shell() {
             <br />
             Keep listening.
           </p>
-          <div className="mini-wave">▁ ▃ ▆ ▂ ▅ ▇ ▃ ▁</div>
+          <div className="mini-wave" aria-hidden="true">
+            {[5, 12, 22, 9, 17, 26, 12, 5].map((height, index) => (
+              <span key={index} style={{ height }} />
+            ))}
+          </div>
         </div>
         <div className="profile">
           <div className="avatar">
